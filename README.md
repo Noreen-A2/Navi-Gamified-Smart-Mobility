@@ -20,10 +20,9 @@ Navi transforms the city of New Alamein into a living adventure map. Real‑time
 
 ## Problem We Solve
 
-- Students waste 30–60 min/day waiting for full buses.
 - Tourists have no easy way to discover hidden gems or navigate transit.
 - Local businesses struggle with seasonal foot traffic.
-- Bus operators dispatch blindly – no real‑time occupancy data.
+- Bus operators dispatch blindly; no real‑time occupancy data .
 
 ---
 
