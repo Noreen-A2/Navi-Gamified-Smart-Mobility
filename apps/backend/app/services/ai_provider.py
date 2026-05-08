@@ -129,7 +129,9 @@ class OpenRouterAIProvider:
             )
             return completion.choices[0].message.content or ""
         except Exception as exc:
-            return f"⚠️ Rota AI is temporarily unavailable: {str(exc)[:120]}"
+            import logging
+            logging.getLogger(__name__).error("Rota AI request failed: %s", exc)
+            return "⚠️ Rota AI is temporarily unavailable. Please try again shortly."
 
     def chat(self, payload: RotaChatRequest) -> RotaChatResponse:
         reply = self._complete(payload.prompt)

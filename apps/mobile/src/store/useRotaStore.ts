@@ -26,18 +26,18 @@ export const useRotaStore = create<RotaState>((set, get) => ({
 
     sendMessage: async (text: string) => {
         const userMsg: RotaMessage = { id: newId(), role: "user", content: text };
-        set({ messages: [...get().messages, userMsg], isLoading: true });
+        set((state) => ({ messages: [...state.messages, userMsg], isLoading: true }));
         try {
             const data = await fetchRotaResponse(text);
             const aiMsg: RotaMessage = { id: newId(), role: "assistant", content: data.message };
-            set({ messages: [...get().messages, aiMsg] });
+            set((state) => ({ messages: [...state.messages, aiMsg] }));
         } catch {
             const errMsg: RotaMessage = {
                 id: newId(),
                 role: "assistant",
                 content: "⚠️ Could not reach Rota AI. Check your connection and try again."
             };
-            set({ messages: [...get().messages, errMsg] });
+            set((state) => ({ messages: [...state.messages, errMsg] }));
         } finally {
             set({ isLoading: false });
         }
