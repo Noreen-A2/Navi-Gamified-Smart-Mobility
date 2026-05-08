@@ -7,7 +7,7 @@ export type RotaMessage = {
 };
 
 export const fetchRotaResponse = async (prompt: string) => {
-    return apiFetch<{ message: string; routePreview: string }>("/ai/chat", {
+    return apiFetch<{ message: string; route_preview: string }>("/ai/chat", {
         method: "POST",
         body: JSON.stringify({ prompt })
     });

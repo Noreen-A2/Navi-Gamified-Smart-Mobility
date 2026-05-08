@@ -1,175 +1,222 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { useRef, useState } from "react";
+import {
+    ActivityIndicator,
+    FlatList,
+    KeyboardAvoidingView,
+    Platform,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRotaStore } from "../store/useRotaStore";
-import { SectionTitle } from "../components/SectionTitle";
-import { HoloButton } from "../components/HoloButton";
 import { GlassCard } from "../components/GlassCard";
 import { colors, gradients, radii, spacing, typography } from "../theme";
 
 export const RotaScreen = () => {
     const insets = useSafeAreaInsets();
     const messages = useRotaStore((state) => state.messages);
-    const intents = ["Scenic", "Fast", "Quiet", "Quest", "Night"];
-    const savedRoutes = ["Marina Loop", "Old Town Drift", "Skyline Pulse"];
+    const isLoading = useRotaStore((state) => state.isLoading);
+    const sendMessage = useRotaStore((state) => state.sendMessage);
+    const [input, setInput] = useState("");
+    const listRef = useRef<FlatList>(null);
+
+    const handleSend = async () => {
+        const text = input.trim();
+        if (!text || isLoading) return;
+        setInput("");
+        await sendMessage(text);
+        listRef.current?.scrollToEnd({ animated: true });
+    };
 
     return (
-        <ScrollView style={styles.container} contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 148 }]}>
-            <LinearGradient colors={gradients.pearl as any} style={styles.background} />
-            <SectionTitle title="Rota Studio" subtitle="Design routes with cinematic flow." />
-            <GlassCard style={styles.orbCard}>
+        <KeyboardAvoidingView
+            style={styles.flex}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            keyboardVerticalOffset={insets.top + 56}
+        >
+            <LinearGradient colors={gradients.pearl as any} style={StyleSheet.absoluteFillObject} />
+
+            {/* Header */}
+            <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
                 <View style={styles.orb} />
-                <Text style={styles.orbTitle}>Route intelligence core</Text>
-                <Text style={styles.orbSubtitle}>
-                    Build a journey soundtrack with live city pulses and quest trails.
-                </Text>
-            </GlassCard>
-            <GlassCard style={styles.routeCard}>
-                <Text style={styles.routeTitle}>Route inputs</Text>
-                <View style={styles.inputRow}>
-                    <MaterialIcons name="radio-button-checked" size={16} color={colors.primary} />
-                    <Text style={styles.inputText}>Current location</Text>
+                <View>
+                    <Text style={styles.headerTitle}>ROTA AI</Text>
+                    <Text style={styles.headerSubtitle}>Your Alamein city guide</Text>
                 </View>
-                <View style={styles.inputRow}>
-                    <MaterialIcons name="place" size={16} color={colors.primary} />
-                    <Text style={styles.inputText}>Pick a destination</Text>
-                </View>
-            </GlassCard>
-            <GlassCard style={styles.intentCard}>
-                <Text style={styles.routeTitle}>Intent filters</Text>
-                <View style={styles.intentRow}>
-                    {intents.map((intent) => (
-                        <View key={intent} style={styles.intentPill}>
-                            <Text style={styles.intentText}>{intent}</Text>
+            </View>
+
+            {/* Messages */}
+            <FlatList
+                ref={listRef}
+                data={messages}
+                keyExtractor={(item) => item.id}
+                contentContainerStyle={[styles.messageList, { paddingBottom: insets.bottom + 100 }]}
+                onContentSizeChange={() => listRef.current?.scrollToEnd({ animated: false })}
+                renderItem={({ item }) => (
+                    <View
+                        style={[
+                            styles.bubble,
+                            item.role === "user" ? styles.userBubble : styles.aiBubble
+                        ]}
+                    >
+                        <Text
+                            style={[
+                                styles.bubbleText,
+                                item.role === "user" ? styles.userText : styles.aiText
+                            ]}
+                        >
+                            {item.content}
+                        </Text>
+                    </View>
+                )}
+                ListFooterComponent={
+                    isLoading ? (
+                        <View style={styles.typingRow}>
+                            <ActivityIndicator size="small" color={colors.primary} />
+                            <Text style={styles.typingText}>Rota is thinking…</Text>
                         </View>
-                    ))}
-                </View>
+                    ) : null
+                }
+            />
+
+            {/* Input bar */}
+            <GlassCard style={[styles.inputBar, { paddingBottom: insets.bottom + 8 }]}>
+                <TextInput
+                    style={styles.textInput}
+                    placeholder="Ask about routes, places, quests…"
+                    placeholderTextColor={colors.onSurfaceVariant}
+                    value={input}
+                    onChangeText={setInput}
+                    onSubmitEditing={handleSend}
+                    returnKeyType="send"
+                    editable={!isLoading}
+                    multiline={false}
+                />
+                <TouchableOpacity
+                    style={[styles.sendBtn, (isLoading || !input.trim()) && styles.sendBtnDisabled]}
+                    onPress={handleSend}
+                    disabled={isLoading || !input.trim()}
+                    accessibilityLabel="Send message"
+                >
+                    <MaterialIcons name="send" size={20} color={colors.onPrimary} />
+                </TouchableOpacity>
             </GlassCard>
-            <GlassCard style={styles.messageCard}>
-                <Text style={styles.routeTitle}>Cinematic cues</Text>
-                {messages.map((message) => (
-                    <View key={message.id} style={styles.message}>
-                        <Text style={styles.messageText}>{message.content}</Text>
-                    </View>
-                ))}
-            </GlassCard>
-            <GlassCard style={styles.savedCard}>
-                <Text style={styles.routeTitle}>Saved journeys</Text>
-                {savedRoutes.map((route) => (
-                    <View key={route} style={styles.savedRow}>
-                        <MaterialIcons name="bookmark" size={16} color={colors.primary} />
-                        <Text style={styles.savedText}>{route}</Text>
-                    </View>
-                ))}
-            </GlassCard>
-            <HoloButton title="Preview cinematic route" onPress={() => undefined} />
-        </ScrollView>
+        </KeyboardAvoidingView>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
+    flex: {
         flex: 1,
         backgroundColor: colors.surface
     },
-    content: {
-        padding: spacing.containerPadding,
-        gap: spacing.stackMd
-    },
-    background: {
-        ...StyleSheet.absoluteFillObject,
-        opacity: 0.35
-    },
-    orbCard: {
-        padding: spacing.containerPadding,
-        gap: spacing.stackSm,
-        alignItems: "center"
+    header: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: spacing.stackMd,
+        paddingHorizontal: spacing.containerPadding,
+        paddingBottom: spacing.stackMd
     },
     orb: {
-        alignSelf: "center",
-        width: 160,
-        height: 160,
-        borderRadius: 80,
+        width: 44,
+        height: 44,
+        borderRadius: 22,
         backgroundColor: "rgba(0, 242, 255, 0.25)",
         borderWidth: 1,
-        borderColor: "rgba(0, 242, 255, 0.4)"
+        borderColor: "rgba(0, 242, 255, 0.5)"
     },
-    orbTitle: {
+    headerTitle: {
         ...typography.headlineMd,
         color: colors.primary
     },
-    orbSubtitle: {
+    headerSubtitle: {
         ...typography.bodySm,
-        color: colors.onSurfaceVariant,
-        textAlign: "center"
+        color: colors.onSurfaceVariant
     },
-    routeCard: {
-        padding: spacing.containerPadding,
-        gap: spacing.stackSm
+    messageList: {
+        paddingHorizontal: spacing.containerPadding,
+        gap: spacing.stackSm,
+        flexGrow: 1
     },
-    routeTitle: {
-        ...typography.labelCaps,
-        color: colors.primary
-    },
-    inputRow: {
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 10,
-        padding: 12,
+    bubble: {
+        maxWidth: "80%",
+        padding: 14,
         borderRadius: radii.lg,
-        backgroundColor: "rgba(255, 255, 255, 0.75)"
+        marginBottom: spacing.stackSm
     },
-    inputText: {
-        ...typography.bodySm,
-        color: colors.onSurface
-    },
-    intentCard: {
-        padding: spacing.containerPadding,
-        gap: spacing.stackSm
-    },
-    intentRow: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-        gap: 8
-    },
-    intentPill: {
-        paddingHorizontal: 12,
-        paddingVertical: 6,
-        borderRadius: radii.full,
-        backgroundColor: "rgba(0, 242, 255, 0.15)"
-    },
-    intentText: {
-        ...typography.bodySm,
-        color: colors.primary
-    },
-    messageCard: {
-        padding: spacing.containerPadding,
-        gap: spacing.stackSm
-    },
-    message: {
-        backgroundColor: "rgba(255,255,255,0.8)",
-        padding: 16,
-        borderRadius: 18,
+    aiBubble: {
+        alignSelf: "flex-start",
+        backgroundColor: "rgba(255, 255, 255, 0.85)",
         borderWidth: 1,
         borderColor: "rgba(0, 105, 111, 0.12)"
     },
-    messageText: {
+    userBubble: {
+        alignSelf: "flex-end",
+        backgroundColor: "rgba(0, 242, 255, 0.2)",
+        borderWidth: 1,
+        borderColor: "rgba(0, 242, 255, 0.35)"
+    },
+    bubbleText: {
+        ...typography.bodyMd
+    },
+    aiText: {
+        color: colors.onSurface
+    },
+    userText: {
+        color: colors.primary
+    },
+    typingRow: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 8,
+        paddingHorizontal: spacing.containerPadding,
+        paddingBottom: spacing.stackSm
+    },
+    typingText: {
+        ...typography.bodySm,
+        color: colors.onSurfaceVariant
+    },
+    inputBar: {
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        flexDirection: "row",
+        alignItems: "center",
+        paddingHorizontal: spacing.containerPadding,
+        paddingTop: spacing.stackMd,
+        gap: spacing.stackSm,
+        borderTopLeftRadius: radii.xl,
+        borderTopRightRadius: radii.xl,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0
+    },
+    textInput: {
+        flex: 1,
+        height: 44,
+        paddingHorizontal: 14,
+        borderRadius: radii.lg,
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        borderWidth: 1,
+        borderColor: "rgba(0, 105, 111, 0.15)",
         ...typography.bodyMd,
         color: colors.onSurface
     },
-    savedCard: {
-        padding: spacing.containerPadding,
-        gap: spacing.stackSm
+    sendBtn: {
+        width: 44,
+        height: 44,
+        borderRadius: radii.full,
+        backgroundColor: colors.primary,
+        justifyContent: "center",
+        alignItems: "center"
     },
-    savedRow: {
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 10,
-        paddingVertical: 6
-    },
-    savedText: {
-        ...typography.bodySm,
-        color: colors.onSurface
+    sendBtnDisabled: {
+        opacity: 0.4
     }
 });
+
