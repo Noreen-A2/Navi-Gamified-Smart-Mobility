@@ -16,6 +16,19 @@ The app is designed to look and feel immersive, adopting glassmorphism, soft gra
 
 ---
 
+## Technologies Used
+
+- **Frontend (Mobile):** React Native, Expo, TypeScript
+- **State Management:** Zustand
+- **Navigation & UI:** React Navigation, React Native Reanimated, React Native Gesture Handler
+- **Maps & Location:** React Native Maps, Expo Location
+- **Backend API:** Python, FastAPI, Uvicorn, Pydantic
+- **Database & Auth:** Supabase (PostgreSQL + PostGIS), Supabase Auth
+- **Notifications:** Expo Notifications
+- **Deployment:** Render (backend)
+
+---
+
 ## Architecture
 
 The project is built as a highly scalable full-stack application using only free-tier technologies, adhering to modern clean-architecture principles.
