@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ROTA - Transit Delay Discovery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#b9cacb",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary-fixed-variant": "#394954",
+                        "secondary-container": "#fcd400",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary-container": "#52626d",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d9dadb",
+                        "tertiary-container": "#cdddeb",
+                        "tertiary-fixed-dim": "#b8c9d6",
+                        "primary-container": "#00f2ff",
+                        "on-secondary-container": "#6e5c00",
+                        "tertiary": "#51606c",
+                        "surface-container-low": "#f3f4f5",
+                        "on-secondary-fixed-variant": "#544600",
+                        "primary-fixed": "#74f5ff",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#00696f",
+                        "on-surface": "#191c1d",
+                        "inverse-surface": "#2e3132",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "error": "#ba1a1a",
+                        "background": "#f8f9fa",
+                        "secondary-fixed-dim": "#e9c400",
+                        "secondary": "#705d00",
+                        "on-primary-fixed-variant": "#004f54",
+                        "on-tertiary-fixed": "#0d1d27",
+                        "surface-container": "#edeeef",
+                        "on-error": "#ffffff",
+                        "primary": "#00696f",
+                        "primary-fixed-dim": "#00dbe7",
+                        "outline": "#6a7a7b",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffe16d",
+                        "on-surface-variant": "#3a494b",
+                        "on-secondary-fixed": "#221b00",
+                        "on-primary-container": "#006a71",
+                        "tertiary-fixed": "#d4e5f3",
+                        "surface-variant": "#e1e3e4",
+                        "on-background": "#191c1d",
+                        "inverse-primary": "#00dbe7",
+                        "on-primary-fixed": "#002022"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "40px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "container-padding": "24px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Space Grotesk"],
+                        "data-point": ["Space Grotesk"],
+                        "body-lg": ["Manrope"],
+                        "label-caps": ["Space Grotesk"],
+                        "display-xl": ["Space Grotesk"],
+                        "body-md": ["Manrope"],
+                        "headline-md": ["Space Grotesk"],
+                        "body-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "data-point": ["14px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "display-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+        .glow-edge {
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 1px;
+        }
+        .text-glow { text-shadow: 0 0 10px rgba(0, 242, 255, 0.5); }
+    </style>
+</head>
+<body class="min-h-screen relative pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/40 backdrop-blur-xl border-b border-white/20 shadow-none duration-300 ease-out">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16">
+<div class="flex items-center gap-unit cursor-pointer hover:bg-white/10 transition-colors rounded-full p-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">explore</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold tracking-tight text-primary">NAVI ROTA</h1>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-white/40 cursor-pointer hover:bg-white/10 transition-colors">
+<img alt="User Pilot Avatar" class="w-full h-full object-cover" data-alt="A minimalist, high-end profile avatar featuring a sleek geometric icon on a deep cyan background. The avatar exudes a calm, intelligent aesthetic suitable for a premium urban navigation app. Lighting is soft and digital. Colors rely on the brand's primary cyan and white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUyhabObUI1KVF5jt5dug_gQ1wUzjKRdk919FRB6iv_KuiqnhXwXne5JqXrix9z7g5ipnocyCkcAxVLxkL88yH3jRKfAmNAXG4N0mZf-3w8njTqC6LoBraPtavqEEvtDHKVVx13jcVh8vXed_po5ew0CwobkuNnwtTfe_WkTzZtpMGhguAdM_oVV1c9Fy9GkYfhHsmPP2v1Y0c_juAkdGhSJgu638U7Izepx_T6_B7WHlmh5Du88AhO_sC5U5OTWnbByBhhCxj5MCy"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto space-y-stack-lg">
+<!-- Delay Alert Hero -->
+<section class="glass-panel rounded-xl p-container-padding relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-stack-md border-l-4 border-l-secondary-container">
+<div class="absolute inset-0 bg-gradient-to-r from-secondary-container/10 to-transparent z-0 pointer-events-none"></div>
+<div class="relative z-10 flex-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: 'FILL' 1;">directions_bus</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Transit Update</span>
+</div>
+<h2 class="font-display-xl text-display-xl text-on-background">8 mins away</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Bus 42 is delayed. Time for a quick discovery.</p>
+</div>
+<div class="relative z-10">
+<div class="bg-secondary-container/20 text-on-secondary-container font-headline-md text-headline-md px-6 py-3 rounded-full border border-secondary-container/30 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed-dim">timer</span>
+<span>08:00</span>
+</div>
+</div>
+</section>
+<!-- Quick Quests Bento Grid -->
+<section>
+<div class="flex items-center justify-between mb-stack-md">
+<h3 class="font-headline-lg text-headline-lg text-on-background">Quick Quests</h3>
+<span class="font-label-caps text-label-caps text-primary cursor-pointer hover:text-primary-fixed-dim transition-colors">View Map</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Quest Card 1 -->
+<div class="glass-panel rounded-xl overflow-hidden group cursor-pointer relative h-64 md:col-span-2">
+<img alt="Coffee Shop" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0uj3iMpuXg_3251vvxUh9R4LQbGvSga_QOPz7PkRLROIRGlO5p-R-W9dScalmWsPhpXYLVBllYukgfFrXg1Cin6RFuUAPJni-MlwJB-8-nSYaD6leD7l4059MaawTEMHVKuPTJZJnUInFc0KcIygkxrHFdB5RAUw2f74bhs4ff5d6s2EIHVb67gZazG1l649xSP50vazcrCAmtg9He6Hh3_lTyzdE_F3gFPPCRkixcV7ChQ5sOB5sn_iZxXdIgbwkzRdpjpjgVq6Cg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 p-container-padding">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary/20 text-primary-fixed border border-primary/30 px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 backdrop-blur-md">
+<span class="material-symbols-outlined text-[14px]">local_cafe</span>
+                                2 min walk
+                            </span>
+<span class="bg-secondary-container/20 text-on-secondary-container border border-secondary-container/30 px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 backdrop-blur-md">
+<span class="material-symbols-outlined text-[14px]">stars</span>
+                                +50 XP
+                            </span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-background">Artisan Roasters</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Grab a quick espresso. Highly rated hidden gem.</p>
+</div>
+</div>
+<!-- Quest Card 2 -->
+<div class="glass-panel rounded-xl overflow-hidden group cursor-pointer relative h-64">
+<img alt="Lookout Point" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0uipClh6oiJjWbqN3jvMIVwKf9DNPiqh_gkh7kiB9AurHhBVjba3kHhkTpUlPPncnZrF3wQSJ2Gn_25MMNwAYoQkF_JAsv-bmxYs3Hns7HJnNt3ThZxsDI_GMoVDhlQaS1v2a23Fqv2hYIPyfMGmZjnqtLpcGws7pI165VcRa6OZpsQGOfX52mW3HT9jYt78KEZBjnl0mF9amCcAlJS2C7vOdwTqI60Xk-Uoor2qYXw4sd9PEqiUuNB10NvW"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 p-container-padding">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary/20 text-primary-fixed border border-primary/30 px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 backdrop-blur-md">
+<span class="material-symbols-outlined text-[14px]">landscape</span>
+                                4 min walk
+                            </span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-background">City Viewpoint</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Snap a photo from the elevated terrace.</p>
+</div>
+</div>
+<!-- Quest Card 3 -->
+<div class="glass-panel rounded-xl overflow-hidden group cursor-pointer relative h-64 md:col-span-3 lg:col-span-1">
+<img alt="Street Art" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0uiJRYB3C5SafEXjV4GCYO0iRqxv1WYTw7o9JEsdIkyEN0E884FAzE79IVGYGIMIcz73b9jQ852ZNi9V35uSYSbPkcA0V-R3t68AcGhekzc9lNua9zHy4Qay6d5YsM8sUt_0G_H9lBAScV5fiGoYKIpd5aQkUOp3gzSe9r0T5eRBVXnYlaxXgFWYH5iOOxdVZWf3S2NKLBFn3i8cFD5vOYRVlVsIN_h3c3uwPTgQ7Ie1BlYFj-BLOqX6rA5bKeniQ_cWDT5rCFnNy2E"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 p-container-padding">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary/20 text-primary-fixed border border-primary/30 px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 backdrop-blur-md">
+<span class="material-symbols-outlined text-[14px]">palette</span>
+                                1 min walk
+                            </span>
+<span class="bg-secondary-container/20 text-on-secondary-container border border-secondary-container/30 px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 backdrop-blur-md">
+<span class="material-symbols-outlined text-[14px]">stars</span>
+                                +25 XP
+                            </span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-background">Mural Alley</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Discover local street art just around the corner.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Hidden on md and up, as per instructions if we were building the full shell, but here we render it for mobile demonstration of the shell) -->
+<nav class="fixed bottom-stack-lg left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-md rounded-full z-50 bg-surface/60 backdrop-blur-2xl border border-white/40 shadow-[0_0_20px_rgba(0,242,255,0.15)] flex justify-around items-center p-2 md:hidden">
+<a class="text-on-surface-variant/70 p-3 hover:text-primary transition-all active:scale-90 duration-200 flex flex-col items-center" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+</a>
+<a class="bg-primary-container/80 text-on-primary-container rounded-full p-3 shadow-[0_0_15px_#00f2ff] scale-110 flex flex-col items-center" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
+</a>
+<a class="text-on-surface-variant/70 p-3 hover:text-primary transition-all active:scale-90 duration-200 flex flex-col items-center" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+</a>
+<a class="text-on-surface-variant/70 p-3 hover:text-primary transition-all active:scale-90 duration-200 flex flex-col items-center" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NAVI - The City is Your World</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed": "#221b00",
+                      "surface-bright": "#f8f9fa",
+                      "error-container": "#ffdad6",
+                      "on-surface-variant": "#3a494b",
+                      "surface-container-highest": "#e1e3e4",
+                      "primary-container": "#00f2ff",
+                      "on-tertiary-container": "#52626d",
+                      "on-secondary-container": "#6e5c00",
+                      "secondary": "#705d00",
+                      "on-primary-container": "#006a71",
+                      "surface": "#f8f9fa",
+                      "on-secondary-fixed-variant": "#544600",
+                      "tertiary-fixed": "#d4e5f3",
+                      "on-tertiary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface-tint": "#00696f",
+                      "surface-dim": "#d9dadb",
+                      "secondary-fixed": "#ffe16d",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-surface": "#191c1d",
+                      "tertiary": "#51606c",
+                      "surface-variant": "#e1e3e4",
+                      "on-error": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "primary": "#00696f",
+                      "secondary-fixed-dim": "#e9c400",
+                      "outline-variant": "#b9cacb",
+                      "inverse-surface": "#2e3132",
+                      "error": "#ba1a1a",
+                      "surface-container-high": "#e7e8e9",
+                      "secondary-container": "#fcd400",
+                      "primary-fixed": "#74f5ff",
+                      "on-background": "#191c1d",
+                      "background": "#f8f9fa",
+                      "tertiary-container": "#cdddeb",
+                      "tertiary-fixed-dim": "#b8c9d6",
+                      "primary-fixed-dim": "#00dbe7",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container": "#edeeef",
+                      "on-primary-fixed": "#002022",
+                      "surface-container-low": "#f3f4f5",
+                      "outline": "#6a7a7b",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed": "#0d1d27",
+                      "on-tertiary-fixed-variant": "#394954",
+                      "inverse-primary": "#00dbe7",
+                      "on-primary-fixed-variant": "#004f54"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "16px",
+                      "container-padding": "24px",
+                      "stack-lg": "32px",
+                      "unit": "8px",
+                      "margin-mobile": "20px",
+                      "gutter": "16px",
+                      "stack-sm": "8px",
+                      "margin-desktop": "40px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Space Grotesk"
+                      ],
+                      "body-lg": [
+                              "Manrope"
+                      ],
+                      "data-point": [
+                              "Space Grotesk"
+                      ],
+                      "body-md": [
+                              "Manrope"
+                      ],
+                      "body-sm": [
+                              "Manrope"
+                      ],
+                      "display-xl": [
+                              "Space Grotesk"
+                      ],
+                      "label-caps": [
+                              "Space Grotesk"
+                      ],
+                      "headline-md": [
+                              "Space Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "data-point": [
+                              "14px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-xl": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .glass-hud {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 105, 111, 0.1);
+        }
+        .holo-glow {
+            box-shadow: 0 0 20px rgba(0, 105, 111, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #005a60 0%, #008a92 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-particles {
+            background-image: radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 20%, rgba(0, 242, 255, 0.03) 0%, transparent 30%);
+            background-size: 100% 100%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-surface min-h-screen relative overflow-hidden font-body-md text-body-md bg-white">
+<!-- Background Hero Image -->
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-white"></div>
+<div class="absolute inset-0 opacity-40">
+<svg height="100%" preserveaspectratio="xMidYMid slice" viewbox="0 0 1440 884" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="40" id="grid" patternunits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e1e3e4" stroke-width="0.5"></path>
+</pattern>
+</defs>
+<rect fill="url(#grid)" height="100%" width="100%"></rect>
+<!-- Minimalist City Silhouettes -->
+<path d="M0 800 L100 750 L250 780 L400 700 L550 760 L700 680 L900 750 L1100 720 L1300 770 L1440 730 V884 H0 Z" fill="#f3f4f5" opacity="0.5"></path>
+<!-- Circuits/Micro-lines -->
+<g fill="none" opacity="0.2" stroke="#00dbe7" stroke-width="1">
+<circle cx="100" cy="100" r="3"></circle>
+<path d="M100 103 V150 H150"></path>
+<circle cx="1340" cy="200" r="4"></circle>
+<path d="M1340 204 V250 L1280 300"></path>
+<path d="M400 50 L450 100 H550"></path>
+<circle cx="550" cy="100" r="2"></circle>
+<path d="M1100 600 L1150 650 V750"></path>
+<circle cx="1150" cy="752" r="2"></circle>
+</g>
+<!-- Blueprint data points -->
+<g fill="#6a7a7b" opacity="0.1">
+<rect height="2" width="20" x="50" y="400"></rect>
+<rect height="2" width="20" x="1380" y="150"></rect>
+</g>
+</svg>
+</div>
+<div class="absolute inset-0 bg-particles"></div>
+</div>
+<!-- Top App Bar (Suppressed via requirements for splash screen, but structural element kept for brand consistency if needed later, currently hidden to prioritize canvas) -->
+<!-- Main Content Canvas -->
+<main class="relative z-10 flex flex-col items-center justify-center min-h-screen px-container-padding py-stack-lg">
+<!-- Brand / Logo Area -->
+<div class="mb-stack-lg text-center flex flex-col items-center">
+<div class="w-32 h-32 rounded-3xl glass-hud flex items-center justify-center mb-stack-md overflow-hidden">
+<img alt="NAVI Logo" class="w-full h-full object-contain p-4" src="https://lh3.googleusercontent.com/aida/ADBb0uiJRYB3C5SafEXjV4GCYO0iRqxv1WYTw7o9JEsdIkyEN0E884FAzE79IVGYGIMIcz73b9jQ852ZNi9V35uSYSbPkcA0V-R3t68AcGhekzc9lNua9zHy4Qay6d5YsM8sUt_0G_H9lBAScV5fiGoYKIpd5aQkUOp3gzSe9r0T5eRBVXnYlaxXgFWYH5iOOxdVZWf3S2NKLBFn3i8cFD5vOYRVlVsIN_h3c3uwPTgQ7Ie1BlYFj-BLOqX6rA5bKeniQ_cWDT5rCFnNy2E"/>
+</div>
+</div>
+<!-- Typography & Messaging -->
+<div class="max-w-2xl text-center mb-stack-lg rounded-3xl p-stack-md">
+<h2 class="font-display-xl text-display-xl font-bold mb-stack-sm text-on-surface">See the city. <br/><span class="gradient-text">Turn every ride into a treasure hunt!</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface font-medium max-w-md mx-auto">
+                Experience urban navigation redefined. An airy, ethereal interface distilling the complexity of a smart city into calm intelligence.
+            </p>
+</div>
+<!-- Feature Chips (Bento-style preview) -->
+<div class="grid grid-cols-2 gap-gutter mb-stack-lg max-w-md w-full">
+<div class="glass-panel p-stack-sm rounded-lg flex items-center gap-unit">
+<span class="material-symbols-outlined text-primary text-[20px]">map</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Map-First</span>
+</div>
+<div class="glass-panel p-stack-sm rounded-lg flex items-center gap-unit">
+<span class="material-symbols-outlined text-primary text-[20px]">sensors</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Live Data</span>
+</div>
+</div>
+<!-- CTA -->
+<div class="mt-auto md:mt-stack-lg w-full max-w-sm flex flex-col gap-stack-md">
+<button class="w-full bg-white/90 backdrop-blur-md border border-primary/20 rounded-full py-4 px-8 flex items-center justify-center gap-unit group transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/5">
+<span class="font-headline-md text-[20px] font-semibold text-primary">Start Exploring</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<div class="text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">Tap to unlock the city</p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Suppressed on splash/onboarding per requirements) -->
+</body></html>

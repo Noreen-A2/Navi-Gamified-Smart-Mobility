@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NAVI ROTA - Discovery &amp; Rewards</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline-variant": "#b9cacb",
+                      "surface-container-high": "#e7e8e9",
+                      "on-tertiary-fixed-variant": "#394954",
+                      "secondary-container": "#fcd400",
+                      "surface-bright": "#f8f9fa",
+                      "on-tertiary-container": "#52626d",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-secondary": "#ffffff",
+                      "surface-dim": "#d9dadb",
+                      "tertiary-container": "#cdddeb",
+                      "tertiary-fixed-dim": "#b8c9d6",
+                      "primary-container": "#00f2ff",
+                      "on-secondary-container": "#6e5c00",
+                      "tertiary": "#51606c",
+                      "surface-container-low": "#f3f4f5",
+                      "on-secondary-fixed-variant": "#544600",
+                      "primary-fixed": "#74f5ff",
+                      "on-error-container": "#93000a",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-tint": "#00696f",
+                      "on-surface": "#191c1d",
+                      "inverse-surface": "#2e3132",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-primary": "#ffffff",
+                      "surface": "#f8f9fa",
+                      "error": "#ba1a1a",
+                      "background": "#f8f9fa",
+                      "secondary-fixed-dim": "#e9c400",
+                      "secondary": "#705d00",
+                      "on-primary-fixed-variant": "#004f54",
+                      "on-tertiary-fixed": "#0d1d27",
+                      "surface-container": "#edeeef",
+                      "on-error": "#ffffff",
+                      "primary": "#00696f",
+                      "primary-fixed-dim": "#00dbe7",
+                      "outline": "#6a7a7b",
+                      "on-tertiary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed": "#ffe16d",
+                      "on-surface-variant": "#3a494b",
+                      "on-secondary-fixed": "#221b00",
+                      "on-primary-container": "#006a71",
+                      "tertiary-fixed": "#d4e5f3",
+                      "surface-variant": "#e1e3e4",
+                      "on-background": "#191c1d",
+                      "inverse-primary": "#00dbe7",
+                      "on-primary-fixed": "#002022"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "stack-sm": "8px",
+                      "margin-mobile": "20px",
+                      "margin-desktop": "40px",
+                      "stack-md": "16px",
+                      "stack-lg": "32px",
+                      "container-padding": "24px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Space Grotesk"],
+                      "data-point": ["Space Grotesk"],
+                      "body-lg": ["Manrope"],
+                      "label-caps": ["Space Grotesk"],
+                      "display-xl": ["Space Grotesk"],
+                      "body-md": ["Manrope"],
+                      "headline-md": ["Space Grotesk"],
+                      "body-sm": ["Manrope"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "data-point": ["14px", {"lineHeight": "18px", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.3);
+        }
+        .glass-panel-deep {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.5);
+        }
+        .holo-glow {
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+        }
+        .xp-glow {
+            box-shadow: 0 0 20px rgba(252, 212, 0, 0.3);
+            background: linear-gradient(135deg, rgba(252, 212, 0, 0.1) 0%, rgba(233, 196, 0, 0.05) 100%);
+        }
+        .text-gradient-cyan {
+            background: linear-gradient(135deg, #00f2ff, #00696f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fcd400, #705d00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .soft-reflection {
+            position: relative;
+        }
+        .soft-reflection::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 100%);
+            padding: 1px;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+        .fog-of-war-overlay {
+            background: radial-gradient(circle at center, transparent 30%, rgba(248, 249, 250, 0.8) 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen relative overflow-x-hidden pt-16 pb-24 md:pb-0 md:pl-80">
+<!-- Ambient Background Lighting -->
+<div class="fixed top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-primary-container opacity-20 blur-[120px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-secondary-container opacity-10 blur-[100px] pointer-events-none -z-10"></div>
+<!-- NavigationDrawer (Web) -->
+<div class="hidden md:flex flex-col gap-unit p-container-padding bg-surface-container-lowest/90 backdrop-blur-3xl h-full w-80 rounded-r-xl border-r border-white/10 shadow-xl fixed top-0 left-0 z-40">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary-container relative">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uiJRYB3C5SafEXjV4GCYO0iRqxv1WYTw7o9JEsdIkyEN0E884FAzE79IVGYGIMIcz73b9jQ852ZNi9V35uSYSbPkcA0V-R3t68AcGhekzc9lNua9zHy4Qay6d5YsM8sUt_0G_H9lBAScV5fiGoYKIpd5aQkUOp3gzSe9r0T5eRBVXnYlaxXgFWYH5iOOxdVZWf3S2NKLBFn3i8cFD5vOYRVlVsIN_h3c3uwPTgQ7Ie1BlYFj-BLOqX6rA5bKeniQ_cWDT5rCFnNy2E"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Zenith Explorer</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Level 42 Navigator</p>
+<span class="font-label-caps text-label-caps text-secondary font-bold mt-1 inline-block">8,600 XP</span>
+</div>
+</div>
+<nav class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-4 p-3 font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-high hover:pl-6 transition-all duration-300 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">route</span>
+                Route Assistant
+            </a>
+<a class="flex items-center gap-4 p-3 font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-high hover:pl-6 transition-all duration-300 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">layers</span>
+                City Map
+            </a>
+<a class="flex items-center gap-4 p-3 font-body-md text-body-md bg-secondary-container text-on-secondary-container font-bold rounded-lg shadow-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                XP Achievements
+            </a>
+<a class="flex items-center gap-4 p-3 font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-high hover:pl-6 transition-all duration-300 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">directions_bus</span>
+                Transit Hub
+            </a>
+<a class="flex items-center gap-4 p-3 font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-high hover:pl-6 transition-all duration-300 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+                Pilot Profile
+            </a>
+</nav>
+</div>
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 bg-surface/40 backdrop-blur-xl dark:bg-on-surface/10 fixed top-0 w-full z-50 border-b border-white/20 shadow-none duration-300 ease-out md:w-[calc(100%-20rem)] md:left-80">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" style="font-variation-settings: 'FILL' 0;">explore</span>
+<h1 class="font-headline-md text-headline-md font-bold tracking-tight text-primary dark:text-primary-fixed">NAVI ROTA</h1>
+</div>
+<div class="md:hidden w-8 h-8 rounded-full overflow-hidden border border-primary-container">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uiJRYB3C5SafEXjV4GCYO0iRqxv1WYTw7o9JEsdIkyEN0E884FAzE79IVGYGIMIcz73b9jQ852ZNi9V35uSYSbPkcA0V-R3t68AcGhekzc9lNua9zHy4Qay6d5YsM8sUt_0G_H9lBAScV5fiGoYKIpd5aQkUOp3gzSe9r0T5eRBVXnYlaxXgFWYH5iOOxdVZWf3S2NKLBFn3i8cFD5vOYRVlVsIN_h3c3uwPTgQ7Ie1BlYFj-BLOqX6rA5bKeniQ_cWDT5rCFnNy2E"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="p-margin-mobile md:p-margin-desktop max-w-7xl mx-auto space-y-stack-lg">
+<!-- Hero: Explorer Status -->
+<section class="glass-panel-deep soft-reflection rounded-xl p-container-padding flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555626906-fcf10d6851b4?auto=format&amp;fit=crop&amp;q=80')] opacity-5 mix-blend-overlay bg-cover bg-center pointer-events-none" data-alt="A futuristic smart city seen from above at dusk. The cityscape is overlaid with intricate, glowing digital grid lines and nodes indicating connectivity. The scene is illuminated by soft, cool white and cyan lights, fitting a light-mode aesthetic. The overall mood is advanced, clean, and highly organized, reflecting a premium urban lifestyle interface."></div>
+<div class="flex-shrink-0 relative">
+<div class="w-32 h-32 rounded-full border-4 border-secondary-container p-1 relative z-10 xp-glow bg-surface">
+<img alt="Level 42 Avatar" class="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uipClh6oiJjWbqN3jvMIVwKf9DNPiqh_gkh7kiB9AurHhBVjba3kHhkTpUlPPncnZrF3wQSJ2Gn_25MMNwAYoQkF_JAsv-bmxYs3Hns7HJnNt3ThZxsDI_GMoVDhlQaS1v2a23Fqv2hYIPyfMGmZjnqtLpcGws7pI165VcRa6OZpsQGOfX52mW3HT9jYt78KEZBjnl0mF9amCcAlJS2C7vOdwTqI60Xk-Uoor2qYXw4sd9PEqiUuNB10NvW"/>
+</div>
+<div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-secondary-container text-on-secondary-container font-label-caps text-label-caps px-4 py-1 rounded-full shadow-lg z-20 whitespace-nowrap">
+                    LVL 42
+                </div>
+</div>
+<div class="flex-grow w-full text-center md:text-left z-10">
+<h2 class="font-display-xl text-display-xl text-on-surface mb-2">Master Explorer</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">You are in the top 5% of navigators in the Central Sector.</p>
+<div class="w-full">
+<div class="flex justify-between items-end mb-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">XP PROGRESSION</span>
+<span class="font-data-point text-data-point text-secondary font-bold">8,600 / 10,000</span>
+</div>
+<div class="h-3 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container rounded-full relative w-[86%] shadow-[0_0_10px_rgba(252,212,0,0.5)]">
+<div class="absolute top-0 bottom-0 left-0 right-0 bg-white/30 animate-[pulse_2s_ease-in-out_infinite]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Badges & Districts -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Holographic Achievements -->
+<div class="col-span-1 md:col-span-8 glass-panel soft-reflection rounded-xl p-container-padding flex flex-col gap-stack-md">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Holographic Badges</h3>
+<button class="font-label-caps text-label-caps text-primary hover:text-primary-fixed-dim transition-colors">VIEW ALL</button>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<!-- Badge 1 -->
+<div class="glass-panel p-4 rounded-lg flex flex-col items-center gap-3 text-center group hover:-translate-y-1 transition-transform duration-300">
+<div class="w-16 h-16 rounded-full bg-primary-container/20 flex items-center justify-center border border-primary-container/30 group-hover:holo-glow transition-all">
+<span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div>
+<p class="font-data-point text-data-point text-on-surface">Night Owl</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant text-[10px]">10 PM - 4 AM</p>
+</div>
+</div>
+<!-- Badge 2 -->
+<div class="glass-panel p-4 rounded-lg flex flex-col items-center gap-3 text-center group hover:-translate-y-1 transition-transform duration-300 xp-glow border border-secondary-container/30">
+<div class="w-16 h-16 rounded-full bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl text-secondary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<div>
+<p class="font-data-point text-data-point text-on-surface">Pioneer</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant text-[10px]">NEW DISTRICTS</p>
+</div>
+</div>
+<!-- Badge 3 -->
+<div class="glass-panel p-4 rounded-lg flex flex-col items-center gap-3 text-center group hover:-translate-y-1 transition-transform duration-300">
+<div class="w-16 h-16 rounded-full bg-primary-container/10 flex items-center justify-center border border-primary-container/20">
+<span class="material-symbols-outlined text-3xl text-primary/70" style="font-variation-settings: 'FILL' 0;">pedal_bike</span>
+</div>
+<div>
+<p class="font-data-point text-data-point text-on-surface">Eco Rider</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant text-[10px]">50KM CYCLED</p>
+</div>
+</div>
+<!-- Badge 4 (Locked) -->
+<div class="glass-panel p-4 rounded-lg flex flex-col items-center gap-3 text-center opacity-50 grayscale">
+<div class="w-16 h-16 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-3xl text-outline" style="font-variation-settings: 'FILL' 0;">lock</span>
+</div>
+<div>
+<p class="font-data-point text-data-point text-on-surface">Skyline</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant text-[10px]">LOCKED</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Unlocked Districts Map Preview -->
+<div class="col-span-1 md:col-span-4 glass-panel soft-reflection rounded-xl p-container-padding flex flex-col gap-stack-md relative overflow-hidden group">
+<h3 class="font-headline-md text-headline-md text-on-surface z-10 relative">Unlocked Districts</h3>
+<div class="flex-grow rounded-lg overflow-hidden relative min-h-[200px]">
+<!-- Map Image -->
+<img alt="City Map" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uj3iMpuXg_3251vvxUh9R4LQbGvSga_QOPz7PkRLROIRGlO5p-R-W9dScalmWsPhpXYLVBllYukgfFrXg1Cin6RFuUAPJni-MlwJB-8-nSYaD6leD7l4059MaawTEMHVKuPTJZJnUInFc0KcIygkxrHFdB5RAUw2f74bhs4ff5d6s2EIHVb67gZazG1l649xSP50vazcrCAmtg9He6Hh3_lTyzdE_F3gFPPCRkixcV7ChQ5sOB5sn_iZxXdIgbwkzRdpjpjgVq6Cg"/>
+<!-- Fog of War Overlay -->
+<div class="absolute inset-0 fog-of-war-overlay pointer-events-none"></div>
+<!-- Glowing Marker -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-primary-container rounded-full holo-glow z-10">
+<div class="absolute inset-0 rounded-full bg-primary-container animate-ping opacity-75"></div>
+</div>
+<div class="absolute bottom-3 left-3 z-10">
+<span class="glass-panel px-3 py-1 rounded-full font-label-caps text-label-caps text-primary-fixed bg-surface/80 backdrop-blur-md text-[10px]">SECTOR 7 ACTIVE</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden flex justify-around items-center p-2 bg-surface/60 backdrop-blur-2xl dark:bg-on-surface/20 fixed bottom-stack-lg left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-md rounded-full z-50 border border-white/40 shadow-2xl">
+<a class="text-on-surface-variant/70 p-3 hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">smart_toy</span>
+</a>
+<a class="text-on-surface-variant/70 p-3 hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">map</span>
+</a>
+<a class="bg-primary-container/80 text-on-primary-container rounded-full p-3 shadow-[0_0_15px_#00f2ff] scale-110 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</a>
+<a class="text-on-surface-variant/70 p-3 hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</a>
+</nav>
+</body></html>

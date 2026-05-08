@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NAVI - Immersive Map</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#004f54",
+                        "on-surface": "#191c1d",
+                        "primary-container": "#00f2ff",
+                        "primary-fixed-dim": "#00dbe7",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#002022",
+                        "on-surface-variant": "#3a494b",
+                        "surface-bright": "#f8f9fa",
+                        "on-secondary-fixed": "#221b00",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-fixed-variant": "#394954",
+                        "outline-variant": "#b9cacb",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed": "#d4e5f3",
+                        "surface-tint": "#00696f",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#6e5c00",
+                        "surface": "#f8f9fa",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#51606c",
+                        "on-tertiary-container": "#52626d",
+                        "tertiary-fixed-dim": "#b8c9d6",
+                        "background": "#f8f9fa",
+                        "surface-container": "#edeeef",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-fixed": "#ffe16d",
+                        "on-primary-container": "#006a71",
+                        "inverse-primary": "#00dbe7",
+                        "surface-dim": "#d9dadb",
+                        "primary-fixed": "#74f5ff",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#fcd400",
+                        "primary": "#00696f",
+                        "on-tertiary-fixed": "#0d1d27",
+                        "secondary": "#705d00",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "tertiary-container": "#cdddeb",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#e9c400",
+                        "outline": "#6a7a7b",
+                        "surface-container-low": "#f3f4f5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "stack-sm": "8px",
+                        "margin-desktop": "40px",
+                        "stack-lg": "32px",
+                        "unit": "8px",
+                        "container-padding": "24px",
+                        "gutter": "16px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Space Grotesk"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-caps": ["Space Grotesk"],
+                        "headline-lg": ["Space Grotesk"],
+                        "body-sm": ["Manrope"],
+                        "headline-md": ["Space Grotesk"],
+                        "data-point": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "data-point": ["14px", { "lineHeight": "18px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24
+    }
+.icon-fill {
+    font-variation-settings: "FILL" 1
+    }
+.glass-panel {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5)
+    }
+.holographic-glow {
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.4), inset 0 0 10px rgba(0, 242, 255, 0.2)
+    }
+.xp-glow {
+    background: linear-gradient(135deg, rgba(252, 212, 0, 0.9), rgba(233, 196, 0, 0.9));
+    box-shadow: 0 0 15px rgba(252, 212, 0, 0.5)
+    }
+.map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+    background-color: #f0f1f2
+    }
+.map-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDvmwYINWO9E7ho5684uYuWxANqYGWqvpyjTjc1oWjfYbvS4Ke90MErjyNh-rMOOYYTN8DrRbhtaKhG-PFpc29BaLSoUlN2RicdaNAWNfa9USwbUyq-FdFFpSVP7kJjZJTszWZ9lSaHLZUpAiavcgwSZ0K5YOQgCU-qlALFHuXYEFrP9JdR3YOJaTrk3iosjEyE5j4kTroBUyrW6YCNuPt4jiMYc6RvS5UOQPX7lps2TeEX1lFtiucu00T4MCpemCT2E_sXw1tqlzp2);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9
+    }
+.fog-of-war {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none
+    }
+.glowing-path {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 200px;
+    height: 4px;
+    background: rgba(0, 242, 255, 0.8);
+    box-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff;
+    transform: rotate(-15deg);
+    border-radius: 2px;
+    z-index: 2
+    }
+body {
+    min-height: max(884px, 100dvh)
+    }
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.33);
+        opacity: 0;
+        } 50% {
+        opacity: 0.5;
+        } 100% {
+        transform: scale(1.2);
+        opacity: 0;
+        }
+    }
+.discovery-pulse {
+    position: absolute;
+    border: 2px solid rgba(0, 242, 255, 0.4);
+    border-radius: 50%;
+    animation: pulse-ring 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite
+    }</style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<div class="map-container" data-location="Alamein, Egypt">
+<div class="map-layer" data-alt="A detailed map view of a modern coastal city, showing streets, blocks, and building footprints." style="background-image: url(https://lh3.googleusercontent.com/aida/ADBb0uj3iMpuXg_3251vvxUh9R4LQbGvSga_QOPz7PkRLROIRGlO5p-R-W9dScalmWsPhpXYLVBllYukgfFrXg1Cin6RFuUAPJni-MlwJB-8-nSYaD6leD7l4059MaawTEMHVKuPTJZJnUInFc0KcIygkxrHFdB5RAUw2f74bhs4ff5d6s2EIHVb67gZazG1l649xSP50vazcrCAmtg9He6Hh3_lTyzdE_F3gFPPCRkixcV7ChQ5sOB5sn_iZxXdIgbwkzRdpjpjgVq6Cg); background-size: cover; background-position: center; opacity: 1;"></div>
+<div class="fog-of-war" style="background: radial-gradient(circle at 38% 48%, transparent 160px, rgba(92, 225, 230, 0.4) 185px, rgba(92, 225, 230, 0.8) 205px, #5ce1e6 220px); z-index: 1;"></div>
+<div class="glowing-path"></div>
+<!-- User Location & Discovery Radius -->
+<div class="absolute top-[48%] left-[38%] -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] pointer-events-none z-0">
+<div class="discovery-pulse w-full h-full"></div>
+<div class="absolute inset-0 rounded-full bg-cyan-400/5 border border-cyan-400/20"></div>
+</div>
+<div class="absolute top-[48%] left-[38%] w-3 h-3 bg-white rounded-full holographic-glow z-10"></div>
+<div class="absolute top-[42%] left-[55%] w-4 h-4 bg-primary-container rounded-full holographic-glow z-10 border-2 border-white"></div>
+<!-- Floating XP Markers & Quest Points -->
+<div class="absolute top-[30%] left-[60%] flex flex-col items-center z-20 transform hover:scale-110 transition-transform cursor-pointer">
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center border-primary-container/50 shadow-[0_0_15px_rgba(0,242,255,0.3)] mb-2">
+<span class="material-symbols-outlined text-primary text-xl icon-fill" data-icon="star">star</span>
+</div>
+<span class="font-data-point text-data-point text-primary-fixed-variant bg-white/80 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">+50 XP</span>
+</div>
+<div class="absolute top-[65%] left-[25%] flex flex-col items-center z-20 transform hover:scale-110 transition-transform cursor-pointer">
+<div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center border-secondary-container/50 xp-glow mb-2">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-2xl icon-fill" data-icon="location_on">location_on</span>
+</div>
+<span class="font-data-point text-data-point text-on-surface bg-white/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm border border-secondary-container/30">Hidden Cache<span class="ml-1 opacity-60 text-[10px]">• 150m</span></span>
+</div>
+<div class="absolute top-[55%] left-[75%] flex flex-col items-center z-20 opacity-50">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant mb-1">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="lock">lock</span>
+</div>
+<span class="font-label-caps text-label-caps text-outline-variant">Locked Zone</span>
+</div>
+<!-- POI Markers -->
+<div class="absolute top-[25%] left-[20%] flex flex-col items-center z-20 transform hover:scale-110 transition-transform cursor-pointer">
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center border-primary-container/50 bg-white/40 mb-1">
+<span class="material-symbols-outlined text-[#FF6B6B] text-xl icon-fill">restaurant</span>
+</div>
+<span class="font-data-point text-[10px] text-on-surface bg-white/90 px-2 py-0.5 rounded-full shadow-sm">Gourmet Hub<span class="ml-1 opacity-60 text-[8px] uppercase tracking-tighter">210m</span></span>
+</div>
+<div class="absolute top-[75%] left-[45%] flex flex-col items-center z-20 transform hover:scale-110 transition-transform cursor-pointer">
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center border-primary-container/50 bg-white/40 mb-1">
+<span class="material-symbols-outlined text-[#A06EE1] text-xl icon-fill">museum</span>
+</div>
+<span class="font-data-point text-[10px] text-on-surface bg-white/90 px-2 py-0.5 rounded-full shadow-sm">Old Citadel<span class="ml-1 opacity-60 text-[8px] uppercase tracking-tighter">180m</span></span>
+</div>
+<div class="absolute top-[35%] left-[80%] flex flex-col items-center z-20 transform hover:scale-110 transition-transform cursor-pointer">
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center border-primary-container/50 bg-white/40 mb-1">
+<span class="material-symbols-outlined text-[#FF9F43] text-xl icon-fill">celebration</span>
+</div>
+<span class="font-data-point text-[10px] text-on-surface bg-white/90 px-2 py-0.5 rounded-full shadow-sm">Summer Fest<span class="ml-1 opacity-60 text-[8px] uppercase tracking-tighter">300m</span></span>
+</div>
+<div class="absolute top-[40%] left-[15%] flex flex-col items-center z-20 transform hover:scale-110 transition-transform cursor-pointer">
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center border-primary-container/50 bg-white/40 mb-1">
+<span class="material-symbols-outlined text-[#4CAF50] text-xl icon-fill">park</span>
+</div>
+<span class="font-data-point text-[10px] text-on-surface bg-white/90 px-2 py-0.5 rounded-full shadow-sm">Sunset View<span class="ml-1 opacity-60 text-[8px] uppercase tracking-tighter">120m</span></span>
+</div>
+<div class="absolute top-[20%] left-[50%] flex flex-col items-center z-20 transform hover:scale-110 transition-transform cursor-pointer">
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center border-primary-container/50 bg-white/40 mb-1">
+<span class="material-symbols-outlined text-[#2196F3] text-xl icon-fill">business_center</span>
+</div>
+<span class="font-data-point text-[10px] text-on-surface bg-white/90 px-2 py-0.5 rounded-full shadow-sm">Neural Hub<span class="ml-1 opacity-60 text-[8px] uppercase tracking-tighter">450m</span></span>
+</div>
+<!-- Live Transit Icons -->
+<div class="absolute top-[51%] left-[48%] z-20 flex items-center gap-1 animate-pulse">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-[0_0_10px_#00f2ff]">
+<span class="material-symbols-outlined text-white text-[14px]">directions_bus</span>
+</div>
+<span class="bg-primary text-white text-[8px] font-bold px-1 rounded">Bus 402</span>
+<span class="material-symbols-outlined text-primary text-[12px] ml-1">arrow_upward</span>
+</div>
+<div class="absolute top-[60%] left-[35%] z-20 flex items-center gap-1 animate-pulse">
+<div class="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-[0_0_10px_#fcd400]">
+<span class="material-symbols-outlined text-white text-[14px]">train</span>
+</div>
+<span class="bg-secondary text-white text-[8px] font-bold px-1 rounded">Metro Line 3</span>
+<span class="material-symbols-outlined text-secondary text-[12px] ml-1">arrow_forward</span>
+</div>
+<!-- Environmental Data Overlays -->
+<div class="absolute top-[45%] left-[25%] z-10 opacity-70">
+<div class="glass-panel px-2 py-1 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[12px]">air</span>
+<span class="text-[10px] font-data-point text-on-surface">Wind Velocity: 12km/h</span>
+</div>
+</div>
+<div class="absolute top-[68%] left-[60%] z-10 opacity-70">
+<div class="glass-panel px-2 py-1 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[12px]">auto_awesome</span>
+<span class="text-[10px] font-data-point text-on-surface">Aesthetic Rating: 9.4</span>
+</div>
+</div>
+</div>
+<!-- UI Overlay Layer -->
+<div class="relative z-30 w-full h-full pointer-events-none">
+<!-- Top Bar / Splash Element -->
+<div class="absolute top-margin-mobile left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-lg z-50 pointer-events-auto">
+<div class="glass-panel rounded-xl p-3 flex items-center gap-3 shadow-lg">
+<img alt="NAVI Logo" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB03JQkrae15HYewCwFrmm3Z_LCzoq2vM2n7ja_5SgvM8Yy5qEkV1M1L2OglX7i37CxF7eroKt_LyaPddtdf9bQfV2hzO_3UtFTmPcL8nkqunpcJYd0CH2mm-l4sBu5mo_Gu_L_3haIjhLMdxP_nV1zTd_6ZQ3zaSvbHsh74EcoQ8CmKLlNCqLsXb_ncHRCX9SDQM45rv5WuskwMET4Pawkp1BScObKQDddUPCXzuUiQgN5g85BhC7GGWdlWNxa56sl99OJ4zCkAz8F"/>
+<div class="flex flex-col">
+<span class="font-headline-md text-[16px] leading-tight text-primary font-bold tracking-tight">See the city.</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant leading-tight">Turn every ride into a treasure hunt!</span>
+</div>
+<button class="ml-auto w-10 h-10 rounded-full glass-panel flex items-center justify-center text-primary hover:bg-white/60 transition-colors shadow-sm">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+</button>
+</div>
+</div>
+<!-- Quest / Status Floating Panel (Bottom Right) -->
+<div class="absolute bottom-[100px] right-margin-mobile md:right-margin-desktop pointer-events-auto">
+<div class="glass-panel rounded-xl p-4 w-48 shadow-lg">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-caps text-label-caps text-primary">Current Objective</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="adjust">adjust</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium leading-tight">Reach the Marina Plaza viewpoint.</p>
+<div class="mt-3 w-full bg-surface-container-highest rounded-full h-1.5">
+<div class="bg-primary-container h-1.5 rounded-full w-2/3 holographic-glow"></div>
+</div>
+</div>
+</div>
+<!-- Navigation Shell (BottomNavBar for Mobile, hidden on md+) -->
+<div class="pointer-events-auto md:hidden">
+<nav class="fixed bottom-margin-mobile left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-lg rounded-full z-50 bg-white/60 dark:bg-black/60 backdrop-blur-2xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_rgba(0,105,111,0.15)] flex justify-around items-center py-stack-md px-container-padding">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant opacity-60 hover:opacity-100 hover:scale-110 transition-all group" href="#">
+<span class="material-symbols-outlined mb-1 group-hover:text-primary transition-colors" data-icon="explore">explore</span>
+<span class="font-label-caps text-label-caps">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant opacity-60 hover:opacity-100 hover:scale-110 transition-all group" href="#">
+<span class="material-symbols-outlined mb-1 group-hover:text-primary transition-colors" data-icon="route">route</span>
+<span class="font-label-caps text-label-caps">Rota</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim font-bold drop-shadow-[0_0_8px_rgba(0,242,255,0.5)] scale-90 duration-150 ease-out" href="#">
+<span class="material-symbols-outlined mb-1 icon-fill holographic-glow rounded-full" data-icon="map">map</span>
+<span class="font-label-caps text-label-caps">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant opacity-60 hover:opacity-100 hover:scale-110 transition-all group" href="#">
+<span class="material-symbols-outlined mb-1 group-hover:text-primary transition-colors" data-icon="groups">groups</span>
+<span class="font-label-caps text-label-caps">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant opacity-60 hover:opacity-100 hover:scale-110 transition-all group" href="#">
+<span class="material-symbols-outlined mb-1 group-hover:text-primary transition-colors" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+</div>
+<!-- Desktop Navigation (SideNav equivalent, hidden on mobile) -->
+<div class="hidden md:flex pointer-events-auto absolute left-margin-desktop top-1/2 -translate-y-1/2 flex-col gap-4">
+<div class="glass-panel rounded-full p-2 flex flex-col gap-6 items-center shadow-lg">
+<a class="w-12 h-12 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-white/50 hover:text-primary transition-colors" href="#" title="Explore">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+</a>
+<a class="w-12 h-12 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-white/50 hover:text-primary transition-colors" href="#" title="Rota">
+<span class="material-symbols-outlined" data-icon="route">route</span>
+</a>
+<a class="w-12 h-12 rounded-full flex items-center justify-center text-primary bg-primary-container/20 holographic-glow shadow-sm" href="#" title="Map">
+<span class="material-symbols-outlined icon-fill" data-icon="map">map</span>
+</a>
+<a class="w-12 h-12 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-white/50 hover:text-primary transition-colors" href="#" title="Community">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+</a>
+<a class="w-12 h-12 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-white/50 hover:text-primary transition-colors" href="#" title="Profile">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</a>
+</div>
+</div>
+</div>
+</body></html>

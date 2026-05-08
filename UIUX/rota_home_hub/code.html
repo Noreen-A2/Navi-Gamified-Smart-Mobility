@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NAVI ROTA - Home Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#b9cacb",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary-fixed-variant": "#394954",
+                        "secondary-container": "#fcd400",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary-container": "#52626d",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d9dadb",
+                        "tertiary-container": "#cdddeb",
+                        "tertiary-fixed-dim": "#b8c9d6",
+                        "primary-container": "#00f2ff",
+                        "on-secondary-container": "#6e5c00",
+                        "tertiary": "#51606c",
+                        "surface-container-low": "#f3f4f5",
+                        "on-secondary-fixed-variant": "#544600",
+                        "primary-fixed": "#74f5ff",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#00696f",
+                        "on-surface": "#191c1d",
+                        "inverse-surface": "#2e3132",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "error": "#ba1a1a",
+                        "background": "#f8f9fa",
+                        "secondary-fixed-dim": "#e9c400",
+                        "secondary": "#705d00",
+                        "on-primary-fixed-variant": "#004f54",
+                        "on-tertiary-fixed": "#0d1d27",
+                        "surface-container": "#edeeef",
+                        "on-error": "#ffffff",
+                        "primary": "#00696f",
+                        "primary-fixed-dim": "#00dbe7",
+                        "outline": "#6a7a7b",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffe16d",
+                        "on-surface-variant": "#3a494b",
+                        "on-secondary-fixed": "#221b00",
+                        "on-primary-container": "#006a71",
+                        "tertiary-fixed": "#d4e5f3",
+                        "surface-variant": "#e1e3e4",
+                        "on-background": "#191c1d",
+                        "inverse-primary": "#00dbe7",
+                        "on-primary-fixed": "#002022"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "40px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "container-padding": "24px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Space Grotesk"],
+                        "data-point": ["Space Grotesk"],
+                        "body-lg": ["Manrope"],
+                        "label-caps": ["Space Grotesk"],
+                        "display-xl": ["Space Grotesk"],
+                        "body-md": ["Manrope"],
+                        "headline-md": ["Space Grotesk"],
+                        "body-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "data-point": ["14px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "display-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-hud {
+            background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.1) 100%);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .holo-glow {
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+        }
+        .orb-gradient {
+            background: radial-gradient(circle at 30% 30%, rgba(0, 242, 255, 0.8), rgba(0, 105, 111, 0.2), transparent);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen relative overflow-x-hidden font-body-md text-body-md">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/40 backdrop-blur-xl dark:bg-on-surface/10 border-b border-white/20 shadow-none">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16">
+<button class="text-primary dark:text-primary-fixed hover:bg-white/10 transition-colors duration-300 ease-out p-2 rounded-full">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">explore</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold tracking-tight text-primary dark:text-primary-fixed">NAVI ROTA</h1>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="User Pilot Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uiJRYB3C5SafEXjV4GCYO0iRqxv1WYTw7o9JEsdIkyEN0E884FAzE79IVGYGIMIcz73b9jQ852ZNi9V35uSYSbPkcA0V-R3t68AcGhekzc9lNua9zHy4Qay6d5YsM8sUt_0G_H9lBAScV5fiGoYKIpd5aQkUOp3gzSe9r0T5eRBVXnYlaxXgFWYH5iOOxdVZWf3S2NKLBFn3i8cFD5vOYRVlVsIN_h3c3uwPTgQ7Ie1BlYFj-BLOqX6rA5bKeniQ_cWDT5rCFnNy2E"/>
+</div>
+</div>
+</header>
+<!-- Side Navigation (Desktop) -->
+<nav class="hidden md:flex flex-col gap-unit p-container-padding fixed left-0 top-16 h-[calc(100vh-64px)] w-80 rounded-r-xl bg-surface-container-lowest/90 backdrop-blur-3xl border-r border-white/10 shadow-xl z-40">
+<div class="mb-stack-lg flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img alt="Pilot Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uiJRYB3C5SafEXjV4GCYO0iRqxv1WYTw7o9JEsdIkyEN0E884FAzE79IVGYGIMIcz73b9jQ852ZNi9V35uSYSbPkcA0V-R3t68AcGhekzc9lNua9zHy4Qay6d5YsM8sUt_0G_H9lBAScV5fiGoYKIpd5aQkUOp3gzSe9r0T5eRBVXnYlaxXgFWYH5iOOxdVZWf3S2NKLBFn3i8cFD5vOYRVlVsIN_h3c3uwPTgQ7Ie1BlYFj-BLOqX6rA5bKeniQ_cWDT5rCFnNy2E"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Zenith Explorer</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Level 42 Navigator</p>
+<span class="font-data-point text-data-point text-secondary bg-secondary-container px-2 py-1 rounded-full inline-block mt-1">8,600 XP</span>
+</div>
+</div>
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:pl-6 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">route</span>
+<span class="font-body-md text-body-md">Route Assistant</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:pl-6 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">layers</span>
+<span class="font-body-md text-body-md">City Map</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:pl-6 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="font-body-md text-body-md">XP Achievements</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:pl-6 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">directions_bus</span>
+<span class="font-body-md text-body-md">Transit Hub</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-lg bg-secondary-container text-on-secondary-container font-bold hover:pl-6 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-body-md text-body-md">Pilot Profile</span>
+</a>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-32 md:pl-80 px-margin-mobile md:px-margin-desktop min-h-screen relative">
+<!-- Background Ambient City -->
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none" style="background-image: url('https://lh3.googleusercontent.com/aida/ADBb0uj3iMpuXg_3251vvxUh9R4LQbGvSga_QOPz7PkRLROIRGlO5p-R-W9dScalmWsPhpXYLVBllYukgfFrXg1Cin6RFuUAPJni-MlwJB-8-nSYaD6leD7l4059MaawTEMHVKuPTJZJnUInFc0KcIygkxrHFdB5RAUw2f74bhs4ff5d6s2EIHVb67gZazG1l649xSP50vazcrCAmtg9He6Hh3_lTyzdE_F3gFPPCRkixcV7ChQ5sOB5sn_iZxXdIgbwkzRdpjpjgVq6Cg'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background"></div>
+</div>
+<div class="relative z-10 flex flex-col items-center justify-center min-h-[70vh] gap-stack-lg">
+<!-- Greeting -->
+<div class="text-center glass-panel px-8 py-6 rounded-2xl w-full max-w-2xl mx-auto">
+<h2 class="font-display-xl text-display-xl text-primary mb-2">Good evening, Ammar</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Your city awaits. What's the protocol?</p>
+</div>
+<!-- Holographic Orb (Central AI) -->
+<div class="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center">
+<div class="absolute inset-0 orb-gradient rounded-full blur-2xl opacity-60"></div>
+<div class="w-48 h-48 md:w-64 md:h-64 rounded-full border border-primary-fixed/30 bg-surface/10 backdrop-blur-md flex items-center justify-center relative z-10 holo-glow">
+<img alt="AI Core Interface" class="w-full h-full object-cover rounded-full mix-blend-overlay opacity-50" src="https://lh3.googleusercontent.com/aida/ADBb0uipClh6oiJjWbqN3jvMIVwKf9DNPiqh_gkh7kiB9AurHhBVjba3kHhkTpUlPPncnZrF3wQSJ2Gn_25MMNwAYoQkF_JAsv-bmxYs3Hns7HJnNt3ThZxsDI_GMoVDhlQaS1v2a23Fqv2hYIPyfMGmZjnqtLpcGws7pI165VcRa6OZpsQGOfX52mW3HT9jYt78KEZBjnl0mF9amCcAlJS2C7vOdwTqI60Xk-Uoor2qYXw4sd9PEqiUuNB10NvW"/>
+<span class="material-symbols-outlined text-primary-fixed text-6xl absolute" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+</div>
+<!-- Mood Chips -->
+<div class="flex flex-wrap justify-center gap-gutter w-full max-w-3xl">
+<button class="glass-hud px-6 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-primary-fixed text-xl">self_improvement</span>
+<span class="font-label-caps text-label-caps text-on-surface">Quiet vibe</span>
+</button>
+<button class="glass-hud px-6 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform duration-300 border-primary-container/50 holo-glow">
+<span class="material-symbols-outlined text-primary-fixed text-xl">landscape</span>
+<span class="font-label-caps text-label-caps text-on-surface">Adventure</span>
+</button>
+<button class="glass-hud px-6 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-primary-fixed text-xl">visibility_off</span>
+<span class="font-label-caps text-label-caps text-on-surface">Hidden places</span>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-stack-lg left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-md rounded-full z-50 bg-surface/60 backdrop-blur-2xl dark:bg-on-surface/20 border border-white/40 shadow-[0_0_20px_rgba(0,242,255,0.15)] shadow-2xl flex justify-around items-center p-2">
+<a class="bg-primary-container/80 text-on-primary-container rounded-full p-3 shadow-[0_0_15px_#00f2ff] scale-110 flex items-center justify-center active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</a>
+<a class="text-on-surface-variant/70 p-3 hover:text-primary transition-all active:scale-90 duration-200 flex items-center justify-center" href="#">
+<span class="material-symbols-outlined">map</span>
+</a>
+<a class="text-on-surface-variant/70 p-3 hover:text-primary transition-all active:scale-90 duration-200 flex items-center justify-center" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+</a>
+<a class="text-on-surface-variant/70 p-3 hover:text-primary transition-all active:scale-90 duration-200 flex items-center justify-center" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+</a>
+</nav>
+</body></html>

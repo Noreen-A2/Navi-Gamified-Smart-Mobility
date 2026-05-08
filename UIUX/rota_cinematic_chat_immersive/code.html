@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ROTA Chat - Immersive Conversation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#00696f",
+                        "on-surface-variant": "#3a494b",
+                        "surface-container-highest": "#e1e3e4",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#00dbe7",
+                        "outline-variant": "#b9cacb",
+                        "inverse-primary": "#00dbe7",
+                        "surface-dim": "#d9dadb",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#0d1d27",
+                        "secondary": "#705d00",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#d4e5f3",
+                        "on-secondary-container": "#6e5c00",
+                        "primary-fixed": "#74f5ff",
+                        "tertiary-fixed-dim": "#b8c9d6",
+                        "on-secondary-fixed": "#221b00",
+                        "secondary-fixed-dim": "#e9c400",
+                        "primary-container": "#00f2ff",
+                        "surface": "#f8f9fa",
+                        "inverse-surface": "#2e3132",
+                        "surface-variant": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#6a7a7b",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#cdddeb",
+                        "on-tertiary-fixed-variant": "#394954",
+                        "surface-container": "#edeeef",
+                        "on-tertiary-container": "#52626d",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#006a71",
+                        "on-primary-fixed": "#002022",
+                        "surface-bright": "#f8f9fa",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f3f4f5",
+                        "secondary-container": "#fcd400",
+                        "on-surface": "#191c1d",
+                        "on-background": "#191c1d",
+                        "tertiary": "#51606c",
+                        "on-primary-fixed-variant": "#004f54",
+                        "background": "#f8f9fa",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-fixed": "#ffe16d",
+                        "primary": "#00696f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "32px",
+                        "container-padding": "24px",
+                        "stack-sm": "8px",
+                        "margin-desktop": "40px",
+                        "stack-md": "16px",
+                        "gutter": "16px",
+                        "unit": "8px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Space Grotesk"],
+                        "body-md": ["Manrope"],
+                        "display-xl": ["Space Grotesk"],
+                        "body-lg": ["Manrope"],
+                        "headline-lg": ["Space Grotesk"],
+                        "data-point": ["Space Grotesk"],
+                        "body-sm": ["Manrope"],
+                        "label-caps": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "data-point": ["14px", {"lineHeight": "18px", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.surface');
+            color: theme('colors.on-surface');
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 105, 111, 0.05);
+        }
+
+        .holographic-orb {
+            background: radial-gradient(circle at 30% 30%, rgba(0, 219, 231, 0.8), rgba(0, 105, 111, 0.4), transparent 70%);
+            box-shadow: 0 0 40px rgba(0, 219, 231, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .input-glass {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-bottom: 2px solid rgba(0, 219, 231, 0.3);
+        }
+        
+        .input-glass:focus-within {
+             border-bottom: 2px solid rgba(0, 219, 231, 1);
+        }
+
+        .message-ai {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(240, 248, 255, 0.6) 100%);
+            border-left: 2px solid theme('colors.primary-fixed-dim');
+        }
+
+        .message-user {
+            background: rgba(255, 255, 255, 0.9);
+            border-right: 2px solid theme('colors.surface-variant');
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface relative">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/40 dark:bg-surface-on-background/40 backdrop-blur-xl border-b border-white/10 shadow-none flex justify-between items-center px-container-padding py-stack-sm h-16">
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200 flex items-center justify-center p-2 rounded-full">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<h1 class="font-display-xl text-headline-lg tracking-tighter text-primary-fixed-dim dark:text-primary-fixed-dim">ROTA</h1>
+<div class="w-8 h-8 rounded-full overflow-hidden border-2 border-white/20 shadow-sm active:scale-95 transition-transform duration-200 cursor-pointer">
+<img alt="User profile avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uipClh6oiJjWbqN3jvMIVwKf9DNPiqh_gkh7kiB9AurHhBVjba3kHhkTpUlPPncnZrF3wQSJ2Gn_25MMNwAYoQkF_JAsv-bmxYs3Hns7HJnNt3ThZxsDI_GMoVDhlQaS1v2a23Fqv2hYIPyfMGmZjnqtLpcGws7pI165VcRa6OZpsQGOfX52mW3HT9jYt78KEZBjnl0mF9amCcAlJS2C7vOdwTqI60Xk-Uoor2qYXw4sd9PEqiUuNB10NvW"/>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col pt-16 pb-24 md:pb-6 px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto w-full relative z-10">
+<!-- Holographic AI Orb Header -->
+<div class="flex flex-col items-center justify-center py-stack-lg relative mt-8">
+<div class="w-32 h-32 rounded-full holographic-orb flex items-center justify-center relative">
+<div class="absolute inset-0 rounded-full border border-white/40 blur-[1px]"></div>
+<span class="material-symbols-outlined text-white text-4xl opacity-90 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+<p class="font-label-caps text-label-caps text-primary-fixed-dim mt-stack-md tracking-widest uppercase">Assistant Active</p>
+</div>
+<!-- Chat Container -->
+<div class="flex-1 flex flex-col gap-stack-md overflow-y-auto hide-scrollbar pb-stack-lg">
+<!-- AI Message -->
+<div class="glass-card message-ai rounded-2xl rounded-tl-sm p-container-padding self-start max-w-[85%] md:max-w-[75%] relative">
+<div class="absolute top-0 left-0 w-full h-full rounded-2xl rounded-tl-sm bg-gradient-to-br from-white/20 to-transparent pointer-events-none"></div>
+<p class="font-body-md text-body-md text-on-surface">Hello Alex. I've optimized your route to the gallery based on the current transit delays. Shall we review the path?</p>
+</div>
+<!-- User Message -->
+<div class="glass-card message-user rounded-2xl rounded-tr-sm p-container-padding self-end max-w-[85%] md:max-w-[75%] shadow-sm">
+<p class="font-body-md text-body-md text-on-surface">Yes, show me the optimal path. I need to be there in 30 minutes.</p>
+</div>
+<!-- AI Message with Card -->
+<div class="glass-card message-ai rounded-2xl rounded-tl-sm p-container-padding self-start w-full relative overflow-hidden">
+<p class="font-body-md text-body-md text-on-surface mb-stack-md">Here is the quickest route using the elevated tramway. It bypasses the surface level congestion.</p>
+<!-- Optimal Path Card (Bento Style) -->
+<div class="bg-white/50 backdrop-blur-md rounded-xl border border-white/30 overflow-hidden shadow-[0_4px_16px_rgba(0,105,111,0.05)]">
+<div class="h-40 relative w-full bg-surface-container-low">
+<img alt="Map view of optimal transit route" class="w-full h-full object-cover opacity-80 mix-blend-multiply" data-location="City Center Transit" src="https://lh3.googleusercontent.com/aida/ADBb0uj3iMpuXg_3251vvxUh9R4LQbGvSga_QOPz7PkRLROIRGlO5p-R-W9dScalmWsPhpXYLVBllYukgfFrXg1Cin6RFuUAPJni-MlwJB-8-nSYaD6leD7l4059MaawTEMHVKuPTJZJnUInFc0KcIygkxrHFdB5RAUw2f74bhs4ff5d6s2EIHVb67gZazG1l649xSP50vazcrCAmtg9He6Hh3_lTyzdE_F3gFPPCRkixcV7ChQ5sOB5sn_iZxXdIgbwkzRdpjpjgVq6Cg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<!-- Glowing Route Overlay (Simulated via CSS) -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M10,80 Q30,70 50,40 T90,20" fill="none" stroke="rgba(0, 219, 231, 0.8)" stroke-linecap="round" stroke-width="3" style="filter: drop-shadow(0 0 4px rgba(0, 219, 231, 0.6));"></path>
+<circle cx="10" cy="80" fill="#ffffff" r="3" stroke="rgba(0, 219, 231, 1)" stroke-width="1.5"></circle>
+<circle cx="90" cy="20" fill="#ffffff" r="3" stroke="rgba(0, 219, 231, 1)" stroke-width="1.5"></circle>
+</svg>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div>
+<h3 class="font-headline-md text-headline-md text-white drop-shadow-md">Elevated Line 4</h3>
+<p class="font-body-sm text-body-sm text-white/90 font-medium">To Art District</p>
+</div>
+<div class="bg-primary-container/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-primary/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">timer</span>
+<span class="font-data-point text-data-point text-primary font-bold">22 min</span>
+</div>
+</div>
+</div>
+<div class="p-4 grid grid-cols-3 gap-2">
+<div class="flex flex-col items-center justify-center p-2 rounded-lg bg-surface-container-lowest/50">
+<span class="material-symbols-outlined text-on-surface-variant mb-1" style="font-variation-settings: 'FILL' 0;">directions_walk</span>
+<span class="font-body-sm text-body-sm text-on-surface">5 min</span>
+</div>
+<div class="flex flex-col items-center justify-center p-2 rounded-lg bg-surface-container-lowest/50 border border-primary/10">
+<span class="material-symbols-outlined text-primary mb-1" style="font-variation-settings: 'FILL' 0;">tram</span>
+<span class="font-body-sm text-body-sm text-primary font-medium">12 min</span>
+</div>
+<div class="flex flex-col items-center justify-center p-2 rounded-lg bg-surface-container-lowest/50">
+<span class="material-symbols-outlined text-on-surface-variant mb-1" style="font-variation-settings: 'FILL' 0;">directions_walk</span>
+<span class="font-body-sm text-body-sm text-on-surface">5 min</span>
+</div>
+</div>
+</div>
+</div>
+<div class="h-24 shrink-0"></div> <!-- Spacer for input -->
+</div>
+</main>
+<!-- Floating Input Area -->
+<div class="fixed bottom-24 md:bottom-8 left-0 w-full px-margin-mobile md:px-margin-desktop z-40 pointer-events-none">
+<div class="max-w-4xl mx-auto w-full pointer-events-auto">
+<div class="input-glass rounded-full flex items-center p-2 pl-6 shadow-lg">
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 outline-none" placeholder="Type a message or command..." type="text"/>
+<button class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors ml-2">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">mic</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-fixed-variant transition-colors ml-2 shadow-[0_0_15px_rgba(0,219,231,0.4)]">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-stack-lg left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-md rounded-full bg-surface-container-low/60 dark:bg-surface-container-lowest/20 backdrop-blur-2xl border border-white/20 shadow-[0_0_20px_rgba(0,219,231,0.15)] flex justify-around items-center py-stack-sm px-stack-md z-50">
+<a class="flex items-center justify-center text-on-surface-variant/70 p-unit hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">explore</span>
+</a>
+<a class="flex items-center justify-center bg-primary-container/30 text-primary-fixed-dim rounded-full p-unit shadow-[0_0_10px_rgba(0,219,231,0.3)] active:scale-110 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant/70 p-unit hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">directions_subway</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant/70 p-unit hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">military_tech</span>
+</a>
+</nav>
+<!-- Background Ambient Gradients -->
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-tertiary-fixed/30 rounded-full blur-[120px]"></div>
+</div>
+</body></html>

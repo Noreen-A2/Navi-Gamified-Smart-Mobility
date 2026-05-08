@@ -1,0 +1,27 @@
+{
+    "extends": "expo/tsconfig.base",
+    "compilerOptions": {
+        "strict": true,
+        "noImplicitAny": true,
+        "ignoreDeprecations": "6.0",
+        "baseUrl": ".",
+        "jsx": "react-native",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "allowJs": true,
+        "target": "ESNext",
+        "lib": [
+            "DOM",
+            "ESNext"
+        ],
+        "paths": {
+            "@/src/*": [
+                "src/*"
+            ],
+            "@react-navigation/native": [
+                "node_modules/@react-navigation/native/lib/typescript/src"
+            ]
+        }
+    }
+}

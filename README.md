@@ -1,46 +1,93 @@
-# Navi-Gamified-Smart-Mobility
-Navi turns Alamein into a living adventure map. Real-time bus seat availability (CV models on cameras), GPS fleet tracking, and "Rota"; a vibe &amp; budget-aware AI concierge. Earn Exploration Points by unlocking zones, scanning QR quests, and redeeming prizes at local businesses. Gamified smart mobility for students, tourists, and city explorers.
+# NAVI - Smart Mobility & City Exploration Platform
 
-# Navi – Alamein’s Gamified Smart Mobility
+NAVI is an AI-powered smart mobility and city exploration platform for Alamein, Egypt. Designed as a futuristic smart-city super app, it blends the mechanics of an exploration RPG with premium travel and gamified navigation.
 
-**Turn every ride into a treasure hunt.**  
-Navi transforms the city of New Alamein into a living adventure map. Real‑time bus seat availability, an AI sidekick (“Rota”), and a digital Scratch Map that rewards exploration with actual prizes – all in one app.
+## Overview
 
----
+The app is designed to look and feel immersive, adopting glassmorphism, soft gradients, and animated transitions to create a cinematic and futuristic experience. The core experience is centered around an interactive map where users can explore the city, unlock regions, complete quests, and track live transit.
 
-## Features
-
-- **Live seat availability** – Edge AI (YOLOv8 on Raspberry Pi 5) counts passengers using existing bus cameras. No video leaves the bus. Privacy by design.
-- **Real‑time bus tracking** – GPS on every bus → live ETA and crowd levels.
-- **Rota AI concierge** – Type your vibe and budget (“150 EGP, sunset, quiet”). Rota suggests a complete, actionable itinerary using live transit data and local POIs.
-- **Gamified exploration** – Unlock city zones, scan hidden QR codes, complete quests. Earn **Exploration Points** redeemable for coffee, beach access, or discounts.
-- **B2B dashboard** – Local businesses see footfall driven by Navi and can create sponsored quests.
+### Features
+- **Authentication**: Phone OTP and Google Sign-in with session persistence (Powered by Supabase Auth).
+- **Gamified Exploration**: Fogged map regions, animated unlocking, XP, and leveling systems.
+- **Quest System**: Location-based dynamic quests including QR scanning.
+- **Live Transit Simulation**: Real-time mock display of buses with occupancy and ETA.
+- **Rota AI (Placeholder)**: A futuristic AI assistant interface prepared for future LLM integration.
+- **Business Integration**: Sponsored locations and rewards.
 
 ---
 
-## Problem We Solve
+## Architecture
 
-- Tourists have no easy way to discover hidden gems or navigate transit.
-- Local businesses struggle with seasonal foot traffic.
-- Bus operators dispatch blindly; no real‑time occupancy data .
+The project is built as a highly scalable full-stack application using only free-tier technologies, adhering to modern clean-architecture principles.
+
+### 1. Mobile App (Frontend)
+Built using **React Native** and **Expo** with **TypeScript**, providing a single codebase for iOS and Android.
+
+- **State Management**: Zustand is used for predictable state handling across auth, map state, and live transit.
+- **Map System**: OpenStreetMap via `react-native-maps` for free, robust mapping.
+- **Animations**: Heavy use of `react-native-reanimated` and `react-native-gesture-handler` for smooth, 60fps transitions and map interactions.
+- **Structure**:
+  - `src/components/`: Reusable, modular UI components.
+  - `src/screens/`: High-level views for the navigation stack.
+  - `src/navigation/`: App routing and stack definition.
+  - `src/store/`: Zustand state modules.
+  - `src/services/`: API hooks and service layer.
+
+### 2. Backend (API)
+Built using **Python** and **FastAPI**, designed to be asynchronous and deployed on platforms like Render.
+
+- **Structure**: Clean modular architecture with `routers`, `services`, `models`, and `core` configs.
+- **Validation**: Pydantic models for strict type checking and API payload validation.
+- **AI Infrastructure**: API abstraction layers are prepared to integrate seamlessly with Gemini API or LangChain RAG pipelines in the future.
+
+### 3. Database & Auth
+Powered by **Supabase** (PostgreSQL with PostGIS for spatial data).
+
+- **Auth**: Fully handled via Supabase Authentication.
+- **Realtime**: Prepared for live transit tracking via Supabase Realtime Subscriptions.
 
 ---
 
-## Tech Stack
+## Local Setup Instructions
 
-| Layer | Technology |
-|-------|-------------|
-| **Frontend** | React Native (iOS/Android) |
-| **Backend** | Node.js + Express, PostGIS, WebSockets |
-| **AI Models** | YOLOv8 (on‑device), RAG pipeline + Mistral 7B / GPT |
-| **Infra** | Raspberry Pi 5 (edge), Docker, DigitalOcean / AWS |
-| **Maps & Routing** | MapLibre / Leaflet, custom graph‑based traffic prediction |
+### Prerequisites
+- Node.js (v18+)
+- Python (v3.10+)
+- Expo CLI (`npm install -g expo-cli`)
 
----
+### Frontend (Mobile App)
+1. Navigate to the mobile app directory:
+   ```bash
+   cd apps/mobile
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the Expo development server:
+   ```bash
+   npx expo start
+   ```
 
-## Getting Started (for developers)
+### Backend (API)
+1. Navigate to the backend directory:
+   ```bash
+   cd apps/backend
+   ```
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv .venv
+   .venv\Scripts\activate  # Windows
+   source .venv/bin/activate  # Mac/Linux
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Start the FastAPI development server:
+   ```bash
+   uvicorn app.main:app --reload
+   ```
 
-### 1. Clone the repo
-```bash
-git clone https://github.com/yourusername/navi-quest.git
-cd navi-quest
+## Next Steps & AI Readiness
+The Rota AI component has a UI ready and API endpoints scaffolded. The next step is connecting the `apps/backend/api/ai` endpoints to a live LLM model (e.g., Gemini) for intelligent route recommendation and city guides.

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NAVI - Community Scavenger Hunt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e7e8e9",
+                        "inverse-primary": "#00dbe7",
+                        "on-primary-container": "#006a71",
+                        "secondary-fixed": "#ffe16d",
+                        "surface-container-highest": "#e1e3e4",
+                        "primary-fixed": "#74f5ff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d9dadb",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#705d00",
+                        "primary": "#00696f",
+                        "on-tertiary-fixed": "#0d1d27",
+                        "secondary-container": "#fcd400",
+                        "tertiary-container": "#cdddeb",
+                        "inverse-surface": "#2e3132",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#e9c400",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f3f4f5",
+                        "outline": "#6a7a7b",
+                        "on-primary-fixed-variant": "#004f54",
+                        "primary-container": "#00f2ff",
+                        "on-surface": "#191c1d",
+                        "surface-bright": "#f8f9fa",
+                        "on-secondary-fixed": "#221b00",
+                        "on-surface-variant": "#3a494b",
+                        "on-primary-fixed": "#002022",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#00dbe7",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#b9cacb",
+                        "on-tertiary-fixed-variant": "#394954",
+                        "surface-variant": "#e1e3e4",
+                        "tertiary-fixed": "#d4e5f3",
+                        "on-background": "#191c1d",
+                        "tertiary": "#51606c",
+                        "surface": "#f8f9fa",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#6e5c00",
+                        "surface-tint": "#00696f",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#b8c9d6",
+                        "background": "#f8f9fa",
+                        "on-tertiary-container": "#52626d",
+                        "surface-container": "#edeeef",
+                        "inverse-on-surface": "#f0f1f2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "unit": "8px",
+                        "container-padding": "24px",
+                        "margin-desktop": "40px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Space Grotesk"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "headline-lg": ["Space Grotesk"],
+                        "body-sm": ["Manrope"],
+                        "label-caps": ["Space Grotesk"],
+                        "data-point": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "data-point": ["14px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #f8f9fa;
+            background-image: radial-gradient(circle at 50% 0%, rgba(0, 219, 231, 0.05) 0%, transparent 70%);
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .glass-panel-heavy {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.08);
+        }
+
+        .holo-glow {
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.5);
+            background: linear-gradient(135deg, rgba(0, 242, 255, 0.8), rgba(0, 105, 111, 0.8));
+        }
+
+        .xp-glow {
+            background: linear-gradient(135deg, #fcd400, #e9c400);
+            box-shadow: 0 0 10px rgba(252, 212, 0, 0.4);
+        }
+
+        .edge-highlight {
+            position: relative;
+        }
+        .edge-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        /* Hide scrollbar for horizontal scroll areas */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-surface font-body-md min-h-screen relative pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/40 backdrop-blur-xl border-b border-white/20 pt-safe flex justify-between items-center px-margin-mobile py-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/20 hover:backdrop-blur-lg transition-all scale-95 active:duration-150 text-primary">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+<div class="flex flex-col items-center">
+<img alt="NAVI Logo" class="h-8 w-auto mb-0.5" src="https://lh3.googleusercontent.com/aida/ADBb0uiJRYB3C5SafEXjV4GCYO0iRqxv1WYTw7o9JEsdIkyEN0E884FAzE79IVGYGIMIcz73b9jQ852ZNi9V35uSYSbPkcA0V-R3t68AcGhekzc9lNua9zHy4Qay6d5YsM8sUt_0G_H9lBAScV5fiGoYKIpd5aQkUOp3gzSe9r0T5eRBVXnYlaxXgFWYH5iOOxdVZWf3S2NKLBFn3i8cFD5vOYRVlVsIN_h3c3uwPTgQ7Ie1BlYFj-BLOqX6rA5bKeniQ_cWDT5rCFnNy2E"/>
+<p class="font-label-caps text-[10px] text-on-surface-variant tracking-[0.2em] uppercase whitespace-nowrap opacity-80">
+        See the city. Turn every ride into a treasure hunt!
+    </p>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-white/40 shadow-sm">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A close-up portrait of a young woman with a cinematic, slightly futuristic lighting setup. The light mode aesthetic is bright and airy, with soft cyan and pristine white reflections on her features, tying into the advanced urban navigation theme. The mood is calm and intelligent." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfdA9iTC2cAxFeiWHqnV_u4Mhq8y1lnAz6CPHLHm2b2J8eCli7lmUPapDn_B_GcJjnN5r2xpetUfnhUQj-2G3wUUaU4GZX2pMzYatH0R2cYlBXrH6Uk2L6Stkj893MhzTb6aXd8vQspWN7IoDLyi9AaSEFCxhYhzVIIW9YG8IQI96B89PbEs2GqjppmTOXlBJVhHvB9Gwk3kfv9HabiJkiWafVAu8N5TvGc0yEeNTT4iqHF3ibbiOWA-9E-yARz0xClUgYfWTayOqt"/>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="pt-24 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto flex flex-col gap-stack-lg">
+<!-- Header Section -->
+<section class="pt-stack-md">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Community Quests</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Discover hidden gems and earn rewards.</p>
+</section>
+<!-- Active Scavenger Hunts (Hero) -->
+<section class="flex flex-col gap-stack-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface">Featured Hunt</h3>
+<span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Live Now</span>
+</div>
+<div class="glass-panel-heavy rounded-2xl p-container-padding edge-highlight relative overflow-hidden group">
+<!-- Background Map Hint -->
+<div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80')] bg-cover bg-center" data-alt="An abstract, stylized aerial view of a modern city marina during the day. The scene is bright and airy, rendered in a pristine white and soft cyan light mode aesthetic. The geometric shapes of the docks and water suggest an advanced, clean urban environment, perfectly fitting a futuristic navigation app."></div>
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-1 bg-surface-container/50 backdrop-blur-md rounded-full px-3 py-1 font-label-caps text-label-caps text-on-surface-variant w-fit text-error"><span class="material-symbols-outlined text-[14px] text-error">schedule</span>
+<span class="font-mono">02:45:12</span> Remaining</span>
+<h4 class="font-headline-lg text-[28px] font-bold text-on-surface leading-tight mt-2">The Alamein Marina Mystery</h4>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm">Follow the digital trail along the waterfront to uncover 5 hidden AR markers.</p>
+<div class="flex items-center gap-3 mt-2">
+<div class="xp-glow rounded-full px-4 py-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-on-secondary-fixed text-[18px]">stars</span>
+<span class="font-data-point text-data-point text-on-secondary-fixed font-bold">+250 XP</span>
+</div>
+<div class="glass-panel rounded-full px-4 py-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span class="font-data-point text-data-point text-primary font-bold">Rare Badge</span>
+</div>
+</div>
+<button class="mt-4 holo-glow rounded-xl py-3 px-6 text-on-primary font-body-lg text-body-lg font-bold flex items-center justify-center gap-2 w-full sm:w-auto shadow-lg shadow-primary-container/30 transition-transform active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+                        Join Quest
+                    </button>
+</div>
+</div>
+</section><section class="flex flex-col gap-stack-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recommended for You</h3>
+<div class="glass-panel rounded-2xl p-4 edge-highlight flex items-center gap-4">
+<div class="w-16 h-16 rounded-xl bg-secondary-container/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[32px]">coffee</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<h5 class="font-data-point text-data-point font-bold text-on-surface">Nitro Coffee Hub</h5>
+<span class="font-label-caps text-[10px] text-secondary">Partner</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Visit for a 15% discount and a hidden marker clue!</p>
+<div class="flex items-center gap-1 mt-1 text-primary">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span class="font-label-caps text-[10px]">200m away</span>
+</div>
+</div>
+</div>
+</section><section class="flex flex-col gap-stack-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Friend Activity</h3>
+<div class="glass-panel rounded-xl p-4 flex items-center gap-4 edge-highlight">
+<div class="flex -space-x-3 overflow-hidden">
+<img alt="Friend 1" class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfdA9iTC2cAxFeiWHqnV_u4Mhq8y1lnAz6CPHLHm2b2J8eCli7lmUPapDn_B_GcJjnN5r2xpetUfnhUQj-2G3wUUaU4GZX2pMzYatH0R2cYlBXrH6Uk2L6Stkj893MhzTb6aXd8vQspWN7IoDLyi9AaSEFCxhYhzVIIW9YG8IQI96B89PbEs2GqjppmTOXlBJVhHvB9Gwk3kfv9HabiJkiWafVAu8N5TvGc0yEeNTT4iqHF3ibbiOWA-9E-yARz0xClUgYfWTayOqt"/>
+<img alt="Friend 2" class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABKfsFBDfKfnjNQTlByh8L1tHeh-pXloAnsjRjyroHuveyzdsF0yFbidtXXb1FHTZf3bKqUYkgsrtv6VRgLB0c6AFqKGSKUTh7e-Cdm-rTUQBrBvROHloMq4y-RgI4n3joLJ11EZ8RycJXXWKURvk8oja1HrZ3EPpmbq02AhGJiOf74RM-5Zu2cWWPfzu1FM5I9GqzFcV8232cT6FX4DWM-e7ayd2oRQdQ0QHpm_sqhMJPcC5KboRTe68HLW2xxAzKpdv7K4uddGMV"/>
+<div class="flex items-center justify-center h-8 w-8 rounded-full bg-surface-container text-[10px] font-bold text-on-surface-variant ring-2 ring-white">+3</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant"><span class="font-bold text-on-surface">Leo</span> and 4 others are currently tracking this mystery.</p>
+</div>
+</section>
+<!-- Rewards Preview (Horizontal Scroll) -->
+<section class="flex flex-col gap-stack-md -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
+<h3 class="font-headline-md text-headline-md text-on-surface">Unlockable Gear</h3>
+<div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar snap-x">
+<div class="snap-start shrink-0 w-48 glass-panel rounded-xl p-4 flex flex-col items-center gap-3 edge-highlight">
+<div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center shadow-inner relative">
+<div class="absolute inset-0 rounded-full border border-primary-container/30"></div>
+<span class="material-symbols-outlined text-[40px] text-primary" style="font-variation-settings: 'FILL' 1;">directions_bike</span>
+</div>
+<div class="text-center">
+<h5 class="font-data-point text-data-point font-bold text-on-surface">Aero Glider</h5>
+<p class="font-label-caps text-[10px] text-primary mt-1">Epic Mount</p>
+</div>
+</div>
+<div class="snap-start shrink-0 w-48 glass-panel rounded-xl p-4 flex flex-col items-center gap-3 edge-highlight">
+<div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center shadow-inner relative">
+<div class="absolute inset-0 rounded-full border border-secondary-container/30"></div>
+<span class="material-symbols-outlined text-[40px] text-secondary" style="font-variation-settings: 'FILL' 1;">local_cafe</span>
+</div>
+<div class="text-center">
+<h5 class="font-data-point text-data-point font-bold text-on-surface">Marina Pass</h5>
+<p class="font-label-caps text-[10px] text-secondary mt-1">Real Reward</p>
+</div>
+</div>
+<div class="snap-start shrink-0 w-48 glass-panel rounded-xl p-4 flex flex-col items-center gap-3 edge-highlight">
+<div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center shadow-inner relative">
+<div class="absolute inset-0 rounded-full border border-tertiary-container/30"></div>
+<span class="material-symbols-outlined text-[40px] text-tertiary" style="font-variation-settings: 'FILL' 1;">visibility</span>
+</div>
+<div class="text-center">
+<h5 class="font-data-point text-data-point font-bold text-on-surface">Echo Lenses</h5>
+<p class="font-label-caps text-[10px] text-tertiary mt-1">AR Upgrade</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Leaderboard Section -->
+<section class="flex flex-col gap-stack-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface">Top Explorers</h3>
+<button class="font-data-point text-data-point text-primary hover:underline">View All</button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Rank 1 -->
+<div class="glass-panel rounded-xl p-4 flex items-center gap-4 edge-highlight relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-fixed to-primary"></div>
+<div class="font-headline-md text-headline-md font-bold text-primary w-8 text-center">1</div>
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary-container shadow-[0_0_10px_rgba(0,242,255,0.3)]">
+<img alt="Ahmed Profile" class="w-full h-full object-cover" data-alt="A bright, high-key portrait of a young man smiling softly. The lighting is pristine and cinematic, characteristic of a high-end light mode UI. Subtle cyan and white tones dominate the background, giving it an airy, intelligent vibe suitable for a modern urban navigation context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABKfsFBDfKfnjNQTlByh8L1tHeh-pXloAnsjRjyroHuveyzdsF0yFbidtXXb1FHTZf3bKqUYkgsrtv6VRgLB0c6AFqKGSKUTh7e-Cdm-rTUQBrBvROHloMq4y-RgI4n3joLJ11EZ8RycJXXWKURvk8oja1HrZ3EPpmbq02AhGJiOf74RM-5Zu2cWWPfzu1FM5I9GqzFcV8232cT6FX4DWM-e7ayd2oRQdQ0QHpm_sqhMJPcC5KboRTe68HLW2xxAzKpdv7K4uddGMV"/>
+</div>
+<div class="flex-1">
+<h4 class="font-data-point text-data-point font-bold text-on-surface">Ahmed</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Level 42 Master</p>
+</div>
+<div class="text-right">
+<span class="font-data-point text-data-point font-bold text-primary block">12,050</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">XP</span>
+</div>
+</div>
+<!-- Rank 2 -->
+<div class="glass-panel rounded-xl p-4 flex items-center gap-4 edge-highlight">
+<div class="font-headline-md text-headline-md font-bold text-on-surface-variant w-8 text-center">2</div>
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Sarah Profile" class="w-full h-full object-cover" data-alt="A soft, beautifully lit portrait of a young woman with a calm expression. The aesthetic is clean and minimalist, utilizing a light mode palette with ample white space and subtle frosted glass-like reflections in the background. It feels premium and technologically sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhY513xJqpAm__xEqmkLLvMsIXcKFFUIbhMWZO2nCD-iuff2tfGoQM-ApExCkGKvn9Q34_H0v5AxoJwOklm2vFxGhtGPXV3oHWYdPN9ohARSFJLgPkQXBPmR7Wg0cYa9u2WW37oK8bwORtOfirnycq8D2ByRiJemtmrbOP08JDRxHAnuFCToEiUYaeJXHy6UpRURt76SOmhv92GLo_N7FnYsSnfnms6sLRFUIH4iPGxcaEWmRNCTi3VAq-DEcbAueNUtaGGnoQNOhx"/>
+</div>
+<div class="flex-1">
+<h4 class="font-data-point text-data-point font-bold text-on-surface">Sarah</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Level 38 Scout</p>
+</div>
+<div class="text-right">
+<span class="font-data-point text-data-point font-bold text-on-surface block">10,500</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">XP</span>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="glass-panel rounded-xl p-4 flex items-center gap-4 edge-highlight">
+<div class="font-headline-md text-headline-md font-bold text-on-surface-variant w-8 text-center">3</div>
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+</div>
+<div class="flex-1">
+<h4 class="font-data-point text-data-point font-bold text-on-surface">Tariq</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Level 35 Guide</p>
+</div>
+<div class="text-right">
+<span class="font-data-point text-data-point font-bold text-on-surface block">9,820</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">XP</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-8 px-6">
+<div class="glass-panel-heavy rounded-full max-w-sm w-full flex justify-around items-center px-4 py-2 border border-white/40 shadow-xl">
+<!-- Explore (Active) -->
+<a class="flex flex-col items-center justify-center p-2 rounded-full bg-primary-container/20 text-primary transition-all" href="#">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">explore</span>
+</a>
+<!-- Rota (AI Assistant) -->
+<a class="flex flex-col items-center justify-center p-2 text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined text-[28px]">assistant</span>
+</a>
+<!-- Map -->
+<a class="flex flex-col items-center justify-center p-2 text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined text-[28px]">map</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center p-2 text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined text-[28px]">person</span>
+</a>
+</div>
+</nav>
+</body></html>

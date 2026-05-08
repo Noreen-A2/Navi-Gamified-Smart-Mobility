@@ -1,0 +1,47 @@
+{
+    "expo": {
+        "name": "NAVI",
+        "slug": "navi",
+        "scheme": "navi",
+        "version": "0.1.0",
+        "orientation": "portrait",
+        "icon": "./assets/navilogo.png",
+        "userInterfaceStyle": "light",
+        "splash": {
+            "image": "./assets/navilogo.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#f8f9fa"
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.navi.app",
+            "infoPlist": {
+                "NSLocationWhenInUseUsageDescription": "NAVI uses your location to unlock regions and show quests.",
+                "NSCameraUsageDescription": "NAVI uses the camera to scan quest QR codes.",
+                "NSUserNotificationUsageDescription": "NAVI sends alerts about quests, rewards, and transit."
+            }
+        },
+        "android": {
+            "package": "com.navi.app",
+            "permissions": [
+                "ACCESS_COARSE_LOCATION",
+                "ACCESS_FINE_LOCATION",
+                "CAMERA",
+                "POST_NOTIFICATIONS"
+            ]
+        },
+        "plugins": [
+            "expo-camera",
+            "expo-location",
+            "expo-notifications"
+        ],
+        "extra": {
+            "eas": {
+                "projectId": "navi"
+            }
+        }
+    }
+}

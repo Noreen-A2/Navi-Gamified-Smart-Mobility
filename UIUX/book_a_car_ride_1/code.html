@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NAVI - Car Ride Booking</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..700&amp;family=Space+Grotesk:wght@400..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "surface-variant": "#e1e3e4",
+                            "surface-bright": "#f8f9fa",
+                            "surface-dim": "#d9dadb",
+                            "secondary-fixed-dim": "#e9c400",
+                            "outline-variant": "#b9cacb",
+                            "on-surface-variant": "#3a494b",
+                            "surface-container-highest": "#e1e3e4",
+                            "surface-container-low": "#f3f4f5",
+                            "inverse-on-surface": "#f0f1f2",
+                            "error": "#ba1a1a",
+                            "on-primary-fixed": "#002022",
+                            "error-container": "#ffdad6",
+                            "primary-fixed-dim": "#00dbe7",
+                            "surface-container-lowest": "#ffffff",
+                            "secondary-container": "#fcd400",
+                            "outline": "#6a7a7b",
+                            "on-primary-fixed-variant": "#004f54",
+                            "tertiary-fixed": "#d4e5f3",
+                            "on-tertiary-fixed-variant": "#394954",
+                            "tertiary-container": "#cdddeb",
+                            "on-secondary": "#ffffff",
+                            "tertiary-fixed-dim": "#b8c9d6",
+                            "on-secondary-container": "#6e5c00",
+                            "on-error": "#ffffff",
+                            "surface-container": "#edeeef",
+                            "on-primary-container": "#006a71",
+                            "on-tertiary-container": "#52626d",
+                            "surface-tint": "#00696f",
+                            "on-primary": "#ffffff",
+                            "on-secondary-fixed-variant": "#544600",
+                            "on-tertiary-fixed": "#0d1d27",
+                            "on-error-container": "#93000a",
+                            "tertiary": "#51606c",
+                            "inverse-primary": "#00dbe7",
+                            "primary-container": "#00f2ff",
+                            "secondary-fixed": "#ffe16d",
+                            "secondary": "#705d00",
+                            "primary": "#00696f",
+                            "on-tertiary": "#ffffff",
+                            "background": "#f8f9fa",
+                            "primary-fixed": "#74f5ff",
+                            "on-surface": "#191c1d",
+                            "surface-container-high": "#e7e8e9",
+                            "on-secondary-fixed": "#221b00",
+                            "on-background": "#191c1d",
+                            "surface": "#f8f9fa",
+                            "inverse-surface": "#2e3132"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "margin-mobile": "20px",
+                            "gutter": "16px",
+                            "container-padding": "24px",
+                            "stack-sm": "8px",
+                            "margin-desktop": "40px",
+                            "unit": "8px",
+                            "stack-md": "16px",
+                            "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                            "data-point": [
+                                    "Space Grotesk"
+                            ],
+                            "body-md": [
+                                    "Manrope"
+                            ],
+                            "headline-md": [
+                                    "Space Grotesk"
+                            ],
+                            "display-xl": [
+                                    "Space Grotesk"
+                            ],
+                            "label-caps": [
+                                    "Space Grotesk"
+                            ],
+                            "body-lg": [
+                                    "Manrope"
+                            ],
+                            "headline-lg": [
+                                    "Space Grotesk"
+                            ],
+                            "body-sm": [
+                                    "Manrope"
+                            ]
+                    },
+                    "fontSize": {
+                            "data-point": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "18px",
+                                            "fontWeight": "500"
+                                    }
+                            ],
+                            "body-md": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "24px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "headline-md": [
+                                    "24px",
+                                    {
+                                            "lineHeight": "32px",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "display-xl": [
+                                    "48px",
+                                    {
+                                            "lineHeight": "56px",
+                                            "letterSpacing": "-0.02em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "label-caps": [
+                                    "12px",
+                                    {
+                                            "lineHeight": "16px",
+                                            "letterSpacing": "0.1em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "body-lg": [
+                                    "18px",
+                                    {
+                                            "lineHeight": "28px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "headline-lg": [
+                                    "32px",
+                                    {
+                                            "lineHeight": "40px",
+                                            "letterSpacing": "-0.01em",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "body-sm": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "20px",
+                                            "fontWeight": "400"
+                                    }
+                            ]
+                    }
+            },
+                },
+            }
+    </script>
+</head>
+<body class="bg-background text-on-background antialiased w-full h-screen overflow-hidden relative">
+<!-- Map Background -->
+<div class="absolute inset-0 z-0 bg-cover bg-center" data-location="New York City" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBUCiKWl6iaEm42lgQFu9HVthE7EgCA0q8QeH_7RC9wwjKEGrXvqxGQ5QBk8FneOHjHrCX4GT2Nfr-B6uW320-NIkB1wflPiPJzh9230rfkQVedceNcOsR7RYfF13tQzmJalfdEO9fBjBRAN5oAPZrnYh1M8mXY6XVuqPEv_M4aItFDtgwn_eX_vmQkEYQnAnQYB6LQIp-oDWsCctHfgwYuNpsxEES0oUy2XUMcqQcBzuomxCZvxchUcL6LP9QuIgL7ULfN-6rIJgIa');">
+<!-- Overlay gradient for better contrast -->
+<div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/60 pointer-events-none"></div>
+</div>
+<!-- TopAppBar Container -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-padding py-stack-sm w-full bg-white/40 dark:bg-black/40 backdrop-blur-xl shadow-sm border-b border-white/20 dark:border-white/10">
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+</button>
+<h1 class="font-headline-lg text-headline-lg font-bold tracking-tighter text-primary dark:text-primary-fixed-dim">NAVI</h1>
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">sensors</span>
+</button>
+</header>
+<!-- Floating Map Elements -->
+<div class="absolute top-[120px] left-1/2 -translate-x-1/2 flex flex-col items-center z-10">
+<div class="bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-white/50 mb-2">
+<p class="font-label-caps text-label-caps text-on-surface-variant">PICKUP</p>
+<p class="font-data-point text-data-point text-on-surface">120 Broadway</p>
+</div>
+<div class="w-1 h-8 bg-primary/40 rounded-full my-1"></div>
+<div class="bg-primary-container px-4 py-2 rounded-full shadow-sm border border-primary/20">
+<p class="font-label-caps text-label-caps text-on-primary-container">DROP-OFF</p>
+<p class="font-data-point text-data-point text-on-primary-container font-bold">MoMA</p>
+</div>
+</div>
+<!-- Sliding Drawer -->
+<div class="absolute bottom-0 left-0 w-full z-40 bg-white/60 backdrop-blur-2xl rounded-t-3xl border-t border-white/40 shadow-[0_-8px_32px_rgba(0,105,111,0.1)] p-container-padding pb-8">
+<!-- Drag Handle -->
+<div class="w-12 h-1.5 bg-outline-variant/50 rounded-full mx-auto mb-stack-md"></div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md">Choose a Ride</h2>
+<!-- Ride Options List -->
+<div class="flex flex-col gap-stack-sm mb-stack-lg">
+<!-- NAVI Lite (Inactive) -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-white/40 border border-white/20 shadow-sm cursor-pointer hover:bg-white/60 transition-colors">
+<div class="flex items-center gap-4">
+<img alt="NAVI Lite Car" class="w-16 h-16 object-contain mix-blend-multiply" src="https://lh3.googleusercontent.com/aida/ADBb0uipClh6oiJjWbqN3jvMIVwKf9DNPiqh_gkh7kiB9AurHhBVjba3kHhkTpUlPPncnZrF3wQSJ2Gn_25MMNwAYoQkF_JAsv-bmxYs3Hns7HJnNt3ThZxsDI_GMoVDhlQaS1v2a23Fqv2hYIPyfMGmZjnqtLpcGws7pI165VcRa6OZpsQGOfX52mW3HT9jYt78KEZBjnl0mF9amCcAlJS2C7vOdwTqI60Xk-Uoor2qYXw4sd9PEqiUuNB10NvW"/>
+<div>
+<h3 class="font-data-point text-data-point text-on-surface">NAVI Lite</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 5 mins away
+                        </p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-data-point text-data-point text-on-surface">$14.50</p>
+</div>
+</div>
+<!-- NAVI Prime (Active/Holographic Glow) -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-surface-lowest border border-primary-fixed-dim/50 shadow-[0_0_15px_rgba(0,219,231,0.2)] cursor-pointer relative overflow-hidden">
+<!-- Subtle inner glow on top-left -->
+<div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/40 to-transparent pointer-events-none rounded-xl"></div>
+<div class="flex items-center gap-4 relative z-10">
+<img alt="NAVI Prime Car" class="w-16 h-16 object-contain mix-blend-multiply" src="https://lh3.googleusercontent.com/aida/ADBb0uiJRYB3C5SafEXjV4GCYO0iRqxv1WYTw7o9JEsdIkyEN0E884FAzE79IVGYGIMIcz73b9jQ852ZNi9V35uSYSbPkcA0V-R3t68AcGhekzc9lNua9zHy4Qay6d5YsM8sUt_0G_H9lBAScV5fiGoYKIpd5aQkUOp3gzSe9r0T5eRBVXnYlaxXgFWYH5iOOxdVZWf3S2NKLBFn3i8cFD5vOYRVlVsIN_h3c3uwPTgQ7Ie1BlYFj-BLOqX6rA5bKeniQ_cWDT5rCFnNy2E"/>
+<div>
+<h3 class="font-data-point text-data-point text-primary font-bold">NAVI Prime</h3>
+<p class="font-body-sm text-body-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> <span class="font-bold">3 mins away</span>
+</p>
+</div>
+</div>
+<div class="text-right relative z-10">
+<p class="font-data-point text-data-point text-primary font-bold">$22.00</p>
+</div>
+</div>
+<!-- NAVI Van (Inactive) -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-white/40 border border-white/20 shadow-sm cursor-pointer hover:bg-white/60 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 bg-surface-variant/50 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">directions_car</span>
+</div>
+<div>
+<h3 class="font-data-point text-data-point text-on-surface">NAVI Van</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 8 mins away
+                        </p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-data-point text-data-point text-on-surface">$35.00</p>
+</div>
+</div>
+</div>
+<!-- Floating Action Button: Book Ride -->
+<button class="w-full py-4 rounded-full bg-gradient-to-r from-primary to-primary-fixed-dim text-white font-data-point text-data-point font-bold shadow-[0_4px_20px_rgba(0,242,255,0.4)] hover:shadow-[0_6px_25px_rgba(0,242,255,0.6)] transition-all flex items-center justify-center gap-2 relative overflow-hidden">
+<!-- Holographic glow overlay -->
+<div class="absolute inset-0 bg-white/20 mix-blend-overlay"></div>
+<span class="relative z-10">Book NAVI Prime</span>
+<span class="material-symbols-outlined relative z-10 text-[20px]">arrow_forward</span>
+</button>
+</div>
+</body></html>

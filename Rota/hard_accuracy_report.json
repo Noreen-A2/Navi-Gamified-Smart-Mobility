@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-08T10:34:19.280380",
+    "total_tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "overall_accuracy_pct": 100.0,
+    "average_score": 1.0,
+    "model_used": "keyword‑overlap"
+  },
+  "by_category": {
+    "navigation": {
+      "tests": 1,
+      "passed": 1,
+      "average_score": 1.0,
+      "accuracy_pct": 100.0
+    },
+    "emergency": {
+      "tests": 1,
+      "passed": 1,
+      "average_score": 1.0,
+      "accuracy_pct": 100.0
+    },
+    "beaches": {
+      "tests": 1,
+      "passed": 1,
+      "average_score": 1.0,
+      "accuracy_pct": 100.0
+    },
+    "hospitals": {
+      "tests": 1,
+      "passed": 1,
+      "average_score": 1.0,
+      "accuracy_pct": 100.0
+    },
+    "restaurants": {
+      "tests": 1,
+      "passed": 1,
+      "average_score": 1.0,
+      "accuracy_pct": 100.0
+    },
+    "weather": {
+      "tests": 1,
+      "passed": 1,
+      "average_score": 1.0,
+      "accuracy_pct": 100.0
+    },
+    "transport": {
+      "tests": 1,
+      "passed": 1,
+      "average_score": 1.0,
+      "accuracy_pct": 100.0
+    },
+    "pharmacies": {
+      "tests": 1,
+      "passed": 1,
+      "average_score": 1.0,
+      "accuracy_pct": 100.0
+    },
+    "hotels": {
+      "tests": 1,
+      "passed": 1,
+      "average_score": 1.0,
+      "accuracy_pct": 100.0
+    },
+    "attractions": {
+      "tests": 1,
+      "passed": 1,
+      "average_score": 1.0,
+      "accuracy_pct": 100.0
+    }
+  },
+  "failures": []
+}

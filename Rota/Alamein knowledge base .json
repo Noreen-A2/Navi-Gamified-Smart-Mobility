@@ -1,0 +1,817 @@
+{
+  "city": "New Alamein City",
+  "country": "Egypt",
+  "region": "North Coast",
+  "coordinates": { "lat": 30.8325, "lng": 28.9552 },
+  "timezone": "Africa/Cairo",
+  "language": ["Arabic", "English"],
+  "description": "New Alamein City is a modern smart city developed along Egypt's North Coast, approximately 106 km west of Alexandria. It features world-class infrastructure, beach resorts, universities, and is rapidly growing into one of Egypt's most ambitious urban developments.",
+
+  "districts": [
+    {
+      "id": "D1",
+      "name": "Marina District",
+      "name_ar": "منطقة المارينا",
+      "type": "tourist_commercial",
+      "description": "The main tourist and commercial hub with waterfront restaurants, cafes, and retail. Divided into Marina 1 through Marina 7.",
+      "sub_zones": ["Marina 1", "Marina 2", "Marina 3", "Marina 4", "Marina 5", "Marina 6", "Marina 7"],
+      "coordinates": { "lat": 30.8431, "lng": 28.9710 },
+      "known_for": ["seafood restaurants", "cafes", "nightlife", "shopping", "beach access"],
+      "crowd_level": "high in summer",
+      "parking": true
+    },
+    {
+      "id": "D2",
+      "name": "University District (AIU Zone)",
+      "name_ar": "منطقة الجامعة",
+      "type": "educational",
+      "description": "Home to Alamein International University (AIU) and surrounding student services, cafes, and residential buildings.",
+      "coordinates": { "lat": 30.8288, "lng": 28.9441 },
+      "known_for": ["AIU campus", "student cafes", "budget restaurants", "bookshops"],
+      "crowd_level": "moderate",
+      "parking": true
+    },
+    {
+      "id": "D3",
+      "name": "Downtown Core",
+      "name_ar": "وسط المدينة",
+      "type": "mixed_use",
+      "description": "The administrative and commercial center with government offices, banks, ATMs, and major retail.",
+      "coordinates": { "lat": 30.8310, "lng": 28.9500 },
+      "known_for": ["banks", "ATMs", "government services", "pharmacies", "supermarkets"],
+      "crowd_level": "moderate",
+      "parking": true
+    },
+    {
+      "id": "D4",
+      "name": "Residential Zone A (Northern)",
+      "name_ar": "المنطقة السكنية الشمالية",
+      "type": "residential",
+      "description": "Modern residential towers and compounds facing the Mediterranean coast.",
+      "coordinates": { "lat": 30.8480, "lng": 28.9550 },
+      "known_for": ["sea-view apartments", "quiet streets", "jogging paths"],
+      "crowd_level": "low",
+      "parking": true
+    },
+    {
+      "id": "D5",
+      "name": "Hotel & Resort Strip",
+      "name_ar": "شريط الفنادق والمنتجعات",
+      "type": "hospitality",
+      "description": "A coastal strip lined with 5-star hotels, beach resorts, and luxury amenities.",
+      "coordinates": { "lat": 30.8520, "lng": 28.9600 },
+      "known_for": ["luxury hotels", "private beaches", "pools", "fine dining"],
+      "crowd_level": "high in summer",
+      "parking": true
+    },
+    {
+      "id": "D6",
+      "name": "Medical & Services Zone",
+      "name_ar": "منطقة الخدمات الطبية",
+      "type": "medical_services",
+      "description": "Cluster of hospitals, clinics, pharmacies and essential services.",
+      "coordinates": { "lat": 30.8270, "lng": 28.9480 },
+      "known_for": ["Alamein Hospital", "clinics", "24h pharmacies", "labs"],
+      "crowd_level": "moderate",
+      "parking": true
+    },
+    {
+      "id": "D7",
+      "name": "Coastal Road Corridor",
+      "name_ar": "ممر الطريق الساحلي",
+      "type": "transit_corridor",
+      "description": "The International Coastal Highway (Alexandria–Marsa Matrouh) runs through Alamein. Major entry/exit axis.",
+      "coordinates": { "lat": 30.8300, "lng": 28.9400 },
+      "known_for": ["gas stations", "fast food chains", "highway rest stops"],
+      "crowd_level": "variable",
+      "parking": true
+    }
+  ],
+
+  "roads": [
+    {
+      "id": "R1",
+      "name": "International Coastal Highway",
+      "name_ar": "الطريق الساحلي الدولي",
+      "type": "highway",
+      "connects": ["Alexandria", "New Alamein", "Marsa Matrouh"],
+      "speed_limit_kmh": 120,
+      "lanes": 4,
+      "description": "Main artery connecting Alamein to Alexandria (106 km east) and Marsa Matrouh (180 km west).",
+      "traffic_peaks": ["Friday afternoon", "Summer weekends"],
+      "toll": false
+    },
+    {
+      "id": "R2",
+      "name": "Marina Boulevard",
+      "name_ar": "شارع المارينا الرئيسي",
+      "type": "main_road",
+      "connects": ["Marina 1", "Marina 7", "Hotel Strip"],
+      "speed_limit_kmh": 60,
+      "lanes": 2,
+      "description": "Primary road through the marina tourist district. Heavy traffic in summer evenings.",
+      "traffic_peaks": ["evenings in summer", "Friday night"],
+      "toll": false
+    },
+    {
+      "id": "R3",
+      "name": "AIU Access Road",
+      "name_ar": "طريق الوصول للجامعة",
+      "type": "local_road",
+      "connects": ["Coastal Highway", "AIU Campus", "University District"],
+      "speed_limit_kmh": 40,
+      "lanes": 2,
+      "description": "Main road leading to Alamein International University campus.",
+      "traffic_peaks": ["morning 8-9am", "afternoon 2-4pm"],
+      "toll": false
+    },
+    {
+      "id": "R4",
+      "name": "City Center Ring Road",
+      "name_ar": "الطريق الدائري لوسط المدينة",
+      "type": "ring_road",
+      "connects": ["Downtown Core", "Medical Zone", "Residential Zone A"],
+      "speed_limit_kmh": 60,
+      "lanes": 2,
+      "description": "Circular route around the downtown core connecting major service zones.",
+      "traffic_peaks": ["morning rush 8-10am", "evening 5-7pm"],
+      "toll": false
+    },
+    {
+      "id": "R5",
+      "name": "Beach Access Road",
+      "name_ar": "طريق الوصول للشاطئ",
+      "type": "local_road",
+      "connects": ["Marina District", "Public Beach", "Hotel Strip"],
+      "speed_limit_kmh": 40,
+      "lanes": 2,
+      "description": "Connects marina and residential zones to public and private beach entrances.",
+      "traffic_peaks": ["summer afternoons"],
+      "toll": false
+    }
+  ],
+
+  "restaurants": [
+    {
+      "id": "REST001",
+      "name": "Fish Market Alamein",
+      "name_ar": "سوق السمك الإسكندراني",
+      "category": "seafood",
+      "cuisine": ["Egyptian", "Seafood", "Mediterranean"],
+      "location": { "district": "Marina 3", "lat": 30.8440, "lng": 28.9720 },
+      "price_range": "moderate",
+      "price_per_person_egp": "150-300",
+      "rating": 4.5,
+      "open_hours": "12:00-01:00",
+      "days_open": "daily",
+      "phone": "+20-XXX-XXXX",
+      "features": ["sea view", "fresh catch", "family-friendly", "parking"],
+      "delivery": false,
+      "reservations": true,
+      "crowd_level": "high evenings"
+    },
+    {
+      "id": "REST002",
+      "name": "Koshary El Tahrir Alamein",
+      "name_ar": "كشري التحرير العلمين",
+      "category": "fast_food",
+      "cuisine": ["Egyptian"],
+      "location": { "district": "Downtown Core", "lat": 30.8315, "lng": 28.9505 },
+      "price_range": "budget",
+      "price_per_person_egp": "30-60",
+      "rating": 4.2,
+      "open_hours": "08:00-00:00",
+      "days_open": "daily",
+      "features": ["budget-friendly", "takeaway", "dine-in"],
+      "delivery": true,
+      "reservations": false
+    },
+    {
+      "id": "REST003",
+      "name": "La Mer Restaurant",
+      "name_ar": "مطعم لامير",
+      "category": "fine_dining",
+      "cuisine": ["French", "Mediterranean", "Seafood"],
+      "location": { "district": "Hotel Strip", "lat": 30.8525, "lng": 28.9610 },
+      "price_range": "expensive",
+      "price_per_person_egp": "500-1200",
+      "rating": 4.7,
+      "open_hours": "13:00-00:00",
+      "days_open": "daily",
+      "features": ["beachfront", "fine dining", "wine list", "valet parking", "dress code"],
+      "delivery": false,
+      "reservations": true
+    },
+    {
+      "id": "REST004",
+      "name": "Shawarma Palace",
+      "name_ar": "قصر الشاورما",
+      "category": "fast_food",
+      "cuisine": ["Lebanese", "Middle Eastern"],
+      "location": { "district": "University District", "lat": 30.8290, "lng": 28.9445 },
+      "price_range": "budget",
+      "price_per_person_egp": "40-80",
+      "rating": 4.0,
+      "open_hours": "10:00-02:00",
+      "days_open": "daily",
+      "features": ["late-night", "student-friendly", "takeaway"],
+      "delivery": true,
+      "reservations": false
+    },
+    {
+      "id": "REST005",
+      "name": "Nile Garden Grill",
+      "name_ar": "مشويات نايل جاردن",
+      "category": "grill",
+      "cuisine": ["Egyptian", "Grills", "BBQ"],
+      "location": { "district": "Marina 5", "lat": 30.8460, "lng": 28.9740 },
+      "price_range": "moderate",
+      "price_per_person_egp": "120-250",
+      "rating": 4.3,
+      "open_hours": "14:00-02:00",
+      "days_open": "daily",
+      "features": ["outdoor seating", "family-friendly", "shisha"],
+      "delivery": false,
+      "reservations": true
+    },
+    {
+      "id": "REST006",
+      "name": "Pizza Al Fresco",
+      "name_ar": "بيتزا الفريسكو",
+      "category": "italian",
+      "cuisine": ["Italian", "Pizza", "Pasta"],
+      "location": { "district": "Marina 2", "lat": 30.8435, "lng": 28.9715 },
+      "price_range": "moderate",
+      "price_per_person_egp": "100-200",
+      "rating": 4.1,
+      "open_hours": "12:00-00:00",
+      "days_open": "daily",
+      "features": ["outdoor seating", "delivery"],
+      "delivery": true,
+      "reservations": false
+    },
+    {
+      "id": "REST007",
+      "name": "Sushi Nile",
+      "name_ar": "سوشي نايل",
+      "category": "asian",
+      "cuisine": ["Japanese", "Sushi", "Asian Fusion"],
+      "location": { "district": "Marina 4", "lat": 30.8450, "lng": 28.9730 },
+      "price_range": "expensive",
+      "price_per_person_egp": "300-600",
+      "rating": 4.4,
+      "open_hours": "14:00-01:00",
+      "days_open": "daily",
+      "features": ["sea view", "modern interior"],
+      "delivery": false,
+      "reservations": true
+    },
+    {
+      "id": "REST008",
+      "name": "Falafel & Ful El Balad",
+      "name_ar": "فلافل وفول البلد",
+      "category": "street_food",
+      "cuisine": ["Egyptian", "Street Food"],
+      "location": { "district": "Downtown Core", "lat": 30.8312, "lng": 28.9498 },
+      "price_range": "very_budget",
+      "price_per_person_egp": "15-35",
+      "rating": 4.6,
+      "open_hours": "06:00-22:00",
+      "days_open": "daily",
+      "features": ["breakfast", "very cheap", "local favorite"],
+      "delivery": false,
+      "reservations": false
+    }
+  ],
+
+  "cafes": [
+    {
+      "id": "CAFE001",
+      "name": "Beachside Brew",
+      "name_ar": "بيتشسايد برو",
+      "category": "specialty_coffee",
+      "location": { "district": "Marina 1", "lat": 30.8428, "lng": 28.9705 },
+      "price_range": "moderate",
+      "price_per_person_egp": "60-150",
+      "rating": 4.5,
+      "open_hours": "08:00-01:00",
+      "days_open": "daily",
+      "features": ["sea view", "wifi", "study-friendly", "laptop-friendly"],
+      "wifi_speed": "fast"
+    },
+    {
+      "id": "CAFE002",
+      "name": "AIU Student Cafe",
+      "name_ar": "كافيه طلاب الجامعة",
+      "category": "casual_cafe",
+      "location": { "district": "University District", "lat": 30.8285, "lng": 28.9438 },
+      "price_range": "budget",
+      "price_per_person_egp": "30-80",
+      "rating": 4.0,
+      "open_hours": "07:00-23:00",
+      "days_open": "daily",
+      "features": ["budget", "wifi", "study area", "group tables"],
+      "wifi_speed": "moderate"
+    },
+    {
+      "id": "CAFE003",
+      "name": "Starbucks New Alamein",
+      "name_ar": "ستاربكس العلمين الجديدة",
+      "category": "chain_cafe",
+      "location": { "district": "Marina 3", "lat": 30.8442, "lng": 28.9722 },
+      "price_range": "moderate",
+      "price_per_person_egp": "80-200",
+      "rating": 4.2,
+      "open_hours": "08:00-02:00",
+      "days_open": "daily",
+      "features": ["wifi", "drive-through", "loyalty app"],
+      "wifi_speed": "fast"
+    },
+    {
+      "id": "CAFE004",
+      "name": "Roastery Nord",
+      "name_ar": "روستري نورد",
+      "category": "specialty_coffee",
+      "location": { "district": "Downtown Core", "lat": 30.8318, "lng": 28.9508 },
+      "price_range": "moderate",
+      "price_per_person_egp": "70-150",
+      "rating": 4.6,
+      "open_hours": "09:00-00:00",
+      "days_open": "daily",
+      "features": ["specialty coffee", "quiet", "study-friendly", "wifi", "books"],
+      "wifi_speed": "fast"
+    }
+  ],
+
+  "pharmacies": [
+    {
+      "id": "PH001",
+      "name": "El Ezaby Pharmacy",
+      "name_ar": "صيدلية العزبي",
+      "chain": true,
+      "location": { "district": "Marina 3", "lat": 30.8443, "lng": 28.9723 },
+      "open_hours": "24/7",
+      "days_open": "daily",
+      "phone": "+20-XXX-XXXX",
+      "delivery": true,
+      "services": ["prescription", "OTC", "medical supplies", "cosmetics", "delivery"]
+    },
+    {
+      "id": "PH002",
+      "name": "Seif Pharmacy",
+      "name_ar": "صيدلية سيف",
+      "chain": true,
+      "location": { "district": "Downtown Core", "lat": 30.8313, "lng": 28.9502 },
+      "open_hours": "24/7",
+      "days_open": "daily",
+      "phone": "+20-XXX-XXXX",
+      "delivery": true,
+      "services": ["prescription", "OTC", "blood pressure monitoring", "delivery"]
+    },
+    {
+      "id": "PH003",
+      "name": "Al Dawaa Pharmacy",
+      "name_ar": "صيدلية الدواء",
+      "chain": false,
+      "location": { "district": "University District", "lat": 30.8291, "lng": 28.9443 },
+      "open_hours": "09:00-00:00",
+      "days_open": "daily",
+      "phone": "+20-XXX-XXXX",
+      "delivery": false,
+      "services": ["prescription", "OTC", "baby products"]
+    },
+    {
+      "id": "PH004",
+      "name": "North Coast Pharmacy",
+      "name_ar": "صيدلية الساحل الشمالي",
+      "chain": false,
+      "location": { "district": "Coastal Road Corridor", "lat": 30.8302, "lng": 28.9410 },
+      "open_hours": "24/7",
+      "days_open": "daily",
+      "phone": "+20-XXX-XXXX",
+      "delivery": true,
+      "services": ["prescription", "OTC", "first aid", "delivery"]
+    },
+    {
+      "id": "PH005",
+      "name": "Al Rahma Pharmacy",
+      "name_ar": "صيدلية الرحمة",
+      "chain": false,
+      "location": { "district": "Medical Zone", "lat": 30.8272, "lng": 28.9482 },
+      "open_hours": "08:00-23:00",
+      "days_open": "daily",
+      "phone": "+20-XXX-XXXX",
+      "delivery": false,
+      "services": ["prescription", "OTC", "specialized medications", "lab referrals"]
+    }
+  ],
+
+  "hospitals_clinics": [
+    {
+      "id": "HOSP001",
+      "name": "New Alamein General Hospital",
+      "name_ar": "مستشفى العلمين الجديدة العام",
+      "type": "general_hospital",
+      "location": { "district": "Medical Zone", "lat": 30.8268, "lng": 28.9478 },
+      "open_hours": "24/7",
+      "emergency": true,
+      "phone": "+20-XXX-XXXX",
+      "emergency_phone": "123",
+      "specialties": ["emergency", "surgery", "internal medicine", "pediatrics", "obstetrics"],
+      "beds": 200,
+      "ambulance": true
+    },
+    {
+      "id": "HOSP002",
+      "name": "AIU Medical Center",
+      "name_ar": "المركز الطبي بجامعة العلمين",
+      "type": "university_clinic",
+      "location": { "district": "University District", "lat": 30.8286, "lng": 28.9440 },
+      "open_hours": "08:00-20:00",
+      "emergency": false,
+      "phone": "+20-XXX-XXXX",
+      "specialties": ["general practice", "first aid", "mental health", "dental"],
+      "ambulance": false,
+      "notes": "Free for AIU students with valid ID"
+    },
+    {
+      "id": "HOSP003",
+      "name": "North Coast Private Clinic",
+      "name_ar": "عيادة الساحل الشمالي الخاصة",
+      "type": "private_clinic",
+      "location": { "district": "Medical Zone", "lat": 30.8275, "lng": 28.9485 },
+      "open_hours": "10:00-22:00",
+      "emergency": false,
+      "phone": "+20-XXX-XXXX",
+      "specialties": ["dermatology", "orthopedics", "ENT", "ophthalmology"],
+      "ambulance": false
+    },
+    {
+      "id": "HOSP004",
+      "name": "Al Salam Medical Center",
+      "name_ar": "مركز السلام الطبي",
+      "type": "medical_center",
+      "location": { "district": "Downtown Core", "lat": 30.8320, "lng": 28.9510 },
+      "open_hours": "09:00-23:00",
+      "emergency": false,
+      "phone": "+20-XXX-XXXX",
+      "specialties": ["cardiology", "radiology", "lab tests", "ultrasound"],
+      "ambulance": false
+    }
+  ],
+
+  "hotels_resorts": [
+    {
+      "id": "HOT001",
+      "name": "Alamein Hotel",
+      "name_ar": "فندق العلمين",
+      "type": "luxury_hotel",
+      "stars": 5,
+      "location": { "district": "Hotel Strip", "lat": 30.8522, "lng": 28.9605 },
+      "price_range_usd_per_night": "150-400",
+      "rating": 4.7,
+      "features": ["private beach", "pools", "spa", "gym", "restaurants", "conference halls", "kids club"],
+      "check_in": "14:00",
+      "check_out": "12:00",
+      "phone": "+20-XXX-XXXX",
+      "parking": true
+    },
+    {
+      "id": "HOT002",
+      "name": "Sidi Abd El Rahman Resort",
+      "name_ar": "منتجع سيدي عبدالرحمن",
+      "type": "beach_resort",
+      "stars": 5,
+      "location": { "district": "Hotel Strip", "lat": 30.8530, "lng": 28.9620 },
+      "price_range_usd_per_night": "200-600",
+      "rating": 4.8,
+      "features": ["beachfront", "water sports", "multiple restaurants", "spa", "wedding venue"],
+      "check_in": "15:00",
+      "check_out": "11:00",
+      "phone": "+20-XXX-XXXX",
+      "parking": true
+    },
+    {
+      "id": "HOT003",
+      "name": "Marina View Hotel",
+      "name_ar": "فندق إطلالة المارينا",
+      "type": "boutique_hotel",
+      "stars": 4,
+      "location": { "district": "Marina District", "lat": 30.8445, "lng": 28.9735 },
+      "price_range_usd_per_night": "80-180",
+      "rating": 4.3,
+      "features": ["marina view", "rooftop pool", "restaurant", "free breakfast"],
+      "check_in": "14:00",
+      "check_out": "12:00",
+      "phone": "+20-XXX-XXXX",
+      "parking": true
+    },
+    {
+      "id": "HOT004",
+      "name": "Budget Inn Alamein",
+      "name_ar": "بدجت إن العلمين",
+      "type": "budget_hotel",
+      "stars": 3,
+      "location": { "district": "Downtown Core", "lat": 30.8317, "lng": 28.9507 },
+      "price_range_usd_per_night": "25-60",
+      "rating": 3.8,
+      "features": ["wifi", "breakfast included", "central location", "budget-friendly"],
+      "check_in": "14:00",
+      "check_out": "11:00",
+      "phone": "+20-XXX-XXXX",
+      "parking": false
+    }
+  ],
+
+  "beaches": [
+    {
+      "id": "BCH001",
+      "name": "Alamein Public Beach",
+      "name_ar": "شاطئ العلمين العام",
+      "type": "public",
+      "location": { "district": "Coastal Zone", "lat": 30.8500, "lng": 28.9540 },
+      "entry_fee_egp": 0,
+      "open_hours": "06:00-22:00",
+      "facilities": ["changing rooms", "showers", "food kiosks", "lifeguards"],
+      "water_quality": "good",
+      "crowd_level": "very high in summer",
+      "parking": true,
+      "notes": "Free public beach. Gets very crowded on weekends in summer."
+    },
+    {
+      "id": "BCH002",
+      "name": "Marina Beach Club",
+      "name_ar": "نادي شاطئ المارينا",
+      "type": "private",
+      "location": { "district": "Marina District", "lat": 30.8490, "lng": 28.9700 },
+      "entry_fee_egp": "200-400",
+      "open_hours": "08:00-22:00",
+      "facilities": ["sun loungers", "umbrellas", "beach bar", "water sports", "showers", "restaurant"],
+      "water_quality": "excellent",
+      "crowd_level": "moderate",
+      "parking": true
+    },
+    {
+      "id": "BCH003",
+      "name": "Sidi Abd El Rahman Beach",
+      "name_ar": "شاطئ سيدي عبدالرحمن",
+      "type": "resort",
+      "location": { "lat": 30.8540, "lng": 28.9500 },
+      "notes": "One of Egypt's most famous beaches. Crystal clear turquoise water. Located ~5 km west of Alamein center.",
+      "entry_fee_egp": "hotel guests only or day pass",
+      "open_hours": "08:00-20:00",
+      "facilities": ["full resort facilities", "water sports", "snorkeling"],
+      "water_quality": "exceptional",
+      "crowd_level": "moderate (resort controlled)"
+    }
+  ],
+
+  "attractions_landmarks": [
+    {
+      "id": "ATT001",
+      "name": "El Alamein War Museum",
+      "name_ar": "متحف العلمين الحربي",
+      "type": "museum",
+      "location": { "lat": 30.8398, "lng": 28.9340 },
+      "entry_fee_egp": "30-60",
+      "open_hours": "09:00-17:00",
+      "days_open": "daily",
+      "description": "Historic museum commemorating the WWII Battle of El Alamein (1942). Features tanks, weapons, uniforms, and exhibits from Allied and Axis forces.",
+      "rating": 4.6,
+      "visitor_time_hours": 2,
+      "notes": "One of the most historically significant sites on Egypt's North Coast."
+    },
+    {
+      "id": "ATT002",
+      "name": "El Alamein Military Cemetery",
+      "name_ar": "مقبرة العلمين العسكرية",
+      "type": "historical_site",
+      "location": { "lat": 30.8380, "lng": 28.9320 },
+      "entry_fee_egp": 0,
+      "open_hours": "07:00-17:00",
+      "days_open": "daily",
+      "description": "Commonwealth War Cemetery with over 7,000 graves of WWII soldiers. A solemn and historic landmark.",
+      "rating": 4.8,
+      "visitor_time_hours": 1
+    },
+    {
+      "id": "ATT003",
+      "name": "New Alamein City Tower",
+      "name_ar": "برج مدينة العلمين الجديدة",
+      "type": "landmark",
+      "location": { "district": "Downtown Core", "lat": 30.8330, "lng": 28.9520 },
+      "entry_fee_egp": "free (public area)",
+      "description": "Iconic architectural tower and symbol of New Alamein's modern development. Great for photos.",
+      "rating": 4.3
+    },
+    {
+      "id": "ATT004",
+      "name": "Alamein International University (AIU) Campus",
+      "name_ar": "حرم جامعة العلمين الدولية",
+      "type": "educational_landmark",
+      "location": { "district": "University District", "lat": 30.8288, "lng": 28.9441 },
+      "description": "Modern university campus, architecturally impressive. Open for enrolled students and official visitors.",
+      "rating": 4.5
+    },
+    {
+      "id": "ATT005",
+      "name": "North Coast Corniche",
+      "name_ar": "كورنيش الساحل الشمالي",
+      "type": "promenade",
+      "location": { "district": "Coastal Zone", "lat": 30.8480, "lng": 28.9570 },
+      "entry_fee_egp": 0,
+      "open_hours": "24/7",
+      "description": "Scenic waterfront promenade perfect for walking, jogging, and enjoying Mediterranean views.",
+      "rating": 4.4
+    }
+  ],
+
+  "universities_schools": [
+    {
+      "id": "UNI001",
+      "name": "Alamein International University (AIU)",
+      "name_ar": "جامعة العلمين الدولية",
+      "type": "university",
+      "location": { "district": "University District", "lat": 30.8288, "lng": 28.9441 },
+      "phone": "+20-XXX-XXXX",
+      "website": "https://aiu.edu.eg",
+      "faculties": ["Engineering", "Business", "Law", "Arts & Sciences", "Pharmacy", "Computer Science"],
+      "student_count": "~8000",
+      "founded": 2019,
+      "notes": "One of Egypt's newest and most modern universities. Located in New Alamein City."
+    }
+  ],
+
+  "banks_atms": [
+    {
+      "id": "BANK001",
+      "name": "CIB Bank Alamein Branch",
+      "name_ar": "بنك CIB فرع العلمين",
+      "type": "bank",
+      "location": { "district": "Downtown Core", "lat": 30.8314, "lng": 28.9503 },
+      "open_hours": "09:00-17:00",
+      "days_open": "Sunday-Thursday",
+      "atm": true,
+      "atm_hours": "24/7"
+    },
+    {
+      "id": "BANK002",
+      "name": "Banque Misr Alamein",
+      "name_ar": "بنك مصر العلمين",
+      "type": "bank",
+      "location": { "district": "Downtown Core", "lat": 30.8316, "lng": 28.9506 },
+      "open_hours": "09:00-14:30",
+      "days_open": "Sunday-Thursday",
+      "atm": true,
+      "atm_hours": "24/7"
+    },
+    {
+      "id": "BANK003",
+      "name": "ATM - Marina 5 Zone",
+      "name_ar": "ماكينة صراف آلي - مارينا 5",
+      "type": "atm_only",
+      "location": { "district": "Marina 5", "lat": 30.8461, "lng": 28.9741 },
+      "atm": true,
+      "atm_hours": "24/7",
+      "network": "Meeza / Visa / Mastercard"
+    }
+  ],
+
+  "gas_stations": [
+    {
+      "id": "GAS001",
+      "name": "Wataniya Gas Station - Coastal Highway",
+      "name_ar": "محطة وطنية - الطريق الساحلي",
+      "location": { "district": "Coastal Road Corridor", "lat": 30.8298, "lng": 28.9395 },
+      "open_hours": "24/7",
+      "fuel_types": ["92 Octane", "95 Octane", "Diesel"],
+      "services": ["air pump", "water", "convenience store"]
+    },
+    {
+      "id": "GAS002",
+      "name": "Misr Petroleum - Downtown",
+      "name_ar": "مصر للبترول - وسط المدينة",
+      "location": { "district": "Downtown Core", "lat": 30.8308, "lng": 28.9495 },
+      "open_hours": "24/7",
+      "fuel_types": ["92 Octane", "95 Octane", "Diesel", "LPG"],
+      "services": ["air pump", "carwash"]
+    }
+  ],
+
+  "supermarkets": [
+    {
+      "id": "SUPER001",
+      "name": "Carrefour Express Alamein",
+      "name_ar": "كارفور إكسبريس العلمين",
+      "location": { "district": "Marina 3", "lat": 30.8444, "lng": 28.9724 },
+      "open_hours": "09:00-02:00",
+      "days_open": "daily",
+      "features": ["imported goods", "fresh produce", "bakery"]
+    },
+    {
+      "id": "SUPER002",
+      "name": "Spinneys North Coast",
+      "name_ar": "سبينيز الساحل الشمالي",
+      "location": { "district": "Hotel Strip", "lat": 30.8518, "lng": 28.9598 },
+      "open_hours": "10:00-00:00",
+      "days_open": "daily",
+      "features": ["premium products", "deli", "international brands"]
+    },
+    {
+      "id": "SUPER003",
+      "name": "El Manar Mini Market",
+      "name_ar": "ميني ماركت المنار",
+      "location": { "district": "University District", "lat": 30.8293, "lng": 28.9447 },
+      "open_hours": "08:00-23:00",
+      "days_open": "daily",
+      "features": ["budget", "student essentials", "daily groceries"]
+    }
+  ],
+
+  "transportation": {
+    "public_transport": [
+      {
+        "id": "TRANS001",
+        "type": "microbus",
+        "route": "New Alamein ↔ Alexandria",
+        "departure_point": "Main Bus Stop, Downtown Core",
+        "frequency": "every 30-60 minutes",
+        "fare_egp": "30-50",
+        "duration_hours": "1.5-2",
+        "notes": "Most common public transport. Gets very crowded in summer."
+      },
+      {
+        "id": "TRANS002",
+        "type": "microbus",
+        "route": "Downtown Core ↔ Marina District",
+        "fare_egp": "5-10",
+        "duration_minutes": "10-15",
+        "frequency": "frequent"
+      },
+      {
+        "id": "TRANS003",
+        "type": "taxi",
+        "app": "Uber / Careem",
+        "availability": "moderate",
+        "notes": "Uber and Careem operate in Alamein. More reliable in summer season."
+      },
+      {
+        "id": "TRANS004",
+        "type": "bus",
+        "route": "Cairo ↔ New Alamein",
+        "operator": "Go Bus / West & Mid Delta",
+        "fare_egp": "80-150",
+        "duration_hours": "3-3.5",
+        "departure": "multiple times daily",
+        "notes": "Book in advance in summer."
+      }
+    ],
+    "driving_info": {
+      "from_alexandria": { "distance_km": 106, "time_normal": "1h 15min", "time_summer": "2h+" },
+      "from_cairo": { "distance_km": 305, "time_normal": "3h 30min", "time_summer": "5h+" },
+      "from_marsa_matrouh": { "distance_km": 180, "time_normal": "2h", "time_summer": "2h 30min" }
+    }
+  },
+
+  "emergency_services": {
+    "police": { "number": "122", "station": "New Alamein Police Station", "district": "Downtown Core" },
+    "fire": { "number": "180" },
+    "ambulance": { "number": "123" },
+    "tourist_police": { "number": "126" },
+    "general_emergency": { "number": "112" },
+    "coast_guard": { "number": "16666" }
+  },
+
+  "weather_profile": {
+    "summer": {
+      "months": "June-September",
+      "avg_temp_c": "28-35",
+      "sea_temp_c": "26-28",
+      "humidity": "moderate to high",
+      "notes": "Peak tourist season. Hot and sunny. Beach weather. Very crowded."
+    },
+    "winter": {
+      "months": "December-February",
+      "avg_temp_c": "12-18",
+      "notes": "Cool and pleasant. Occasional rain. Very quiet — most tourist businesses closed."
+    },
+    "spring_fall": {
+      "months": "March-May / October-November",
+      "avg_temp_c": "18-26",
+      "notes": "Best time to visit. Mild weather, lower prices, fewer crowds."
+    }
+  },
+
+  "local_tips": [
+    "Summer (June–September) is peak season — book hotels weeks in advance.",
+    "Marina District is walkable once you're there but needs a car/taxi to reach from other zones.",
+    "AIU area has the cheapest food options in the city.",
+    "El Ezaby and Seif pharmacies are 24/7 and have delivery.",
+    "The El Alamein War Museum is a must-visit — one of Egypt's most unique historical sites.",
+    "Traffic on the Coastal Highway peaks on Friday afternoons heading west and Sunday evenings heading east.",
+    "In winter, over 80% of Marina restaurants and cafes close — check ahead.",
+    "Sidi Abd El Rahman beach has some of the clearest water on Egypt's entire coastline.",
+    "Uber and Careem are available but limited — expect waits outside summer season.",
+    "Most businesses in Alamein are cash-only. ATMs at CIB and Banque Misr downtown are reliable."
+  ]
+}
