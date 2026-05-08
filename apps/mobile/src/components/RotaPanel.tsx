@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useRotaStore } from "../store/useRotaStore";
 import { colors, spacing, typography } from "../theme";
-import { HoloButton } from "./HoloButton";
+import { RotaComposer } from "./RotaComposer";
 
 export const RotaPanel = () => {
     const messages = useRotaStore((state) => state.messages);
+    const sendMessage = useRotaStore((state) => state.sendMessage);
+    const isSending = useRotaStore((state) => state.isSending);
 
     return (
         <View style={styles.container}>
@@ -21,7 +23,7 @@ export const RotaPanel = () => {
                     </View>
                 ))}
             </View>
-            <HoloButton title="Generate Route" onPress={() => undefined} />
+            <RotaComposer onSend={sendMessage} isSending={isSending} />
         </View>
     );
 };

@@ -16,21 +16,21 @@ export const mockTransitVehicles: TransitVehicle[] = [
         route: "402",
         occupancy: 32,
         etaMinutes: 4,
-        coordinate: { latitude: 31.0018, longitude: 28.972 }
+        coordinate: { latitude: 30.8412, longitude: 28.968 }
     },
     {
         id: "bus-118",
         route: "118",
         occupancy: 61,
         etaMinutes: 8,
-        coordinate: { latitude: 31.0052, longitude: 28.984 }
+        coordinate: { latitude: 30.8358, longitude: 28.952 }
     },
     {
         id: "bus-77",
         route: "77",
         occupancy: 78,
         etaMinutes: 11,
-        coordinate: { latitude: 30.9984, longitude: 28.965 }
+        coordinate: { latitude: 30.8298, longitude: 28.9468 }
     }
 ];
 
@@ -49,7 +49,7 @@ export const mockTransitRoutes: TransitRoute[] = [
         route: "118",
         name: "Civic Spine",
         status: "Delayed",
-        nextStop: "Old Town Market",
+        nextStop: "Downtown Market",
         headwayMinutes: 10,
         occupancy: 72
     },

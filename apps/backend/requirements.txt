@@ -5,3 +5,6 @@ pydantic-settings==2.2.1
 python-dotenv==1.0.1
 httpx==0.26.0
 supabase==2.4.3
+openai==1.51.2
+requests==2.32.3
+aiohttp==3.10.5

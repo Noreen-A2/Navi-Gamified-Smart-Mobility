@@ -4,10 +4,10 @@ from typing import List
 from app.models.schemas import LatLng, TransitVehicle
 
 ROUTE_PATH = [
-    LatLng(latitude=31.0030, longitude=28.9750),
-    LatLng(latitude=31.0060, longitude=28.9820),
-    LatLng(latitude=31.0080, longitude=28.9900),
-    LatLng(latitude=31.0030, longitude=28.9980)
+    LatLng(latitude=30.8395, longitude=28.9645),
+    LatLng(latitude=30.8440, longitude=28.9710),
+    LatLng(latitude=30.8465, longitude=28.9790),
+    LatLng(latitude=30.8405, longitude=28.9825)
 ]
 
 

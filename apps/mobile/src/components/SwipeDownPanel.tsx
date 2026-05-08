@@ -14,10 +14,13 @@ const HANDLE_HEIGHT = 32;
 
 type SwipeDownPanelProps = {
     children: ReactNode;
+    defaultOpen?: boolean;
+    topOffset?: number;
 };
 
-export const SwipeDownPanel = ({ children }: SwipeDownPanelProps) => {
-    const translateY = useSharedValue(-PANEL_HEIGHT + HANDLE_HEIGHT);
+export const SwipeDownPanel = ({ children, defaultOpen = false, topOffset = 0 }: SwipeDownPanelProps) => {
+    const initialOffset = defaultOpen ? 0 : -PANEL_HEIGHT + HANDLE_HEIGHT;
+    const translateY = useSharedValue(initialOffset);
     const startY = useSharedValue(translateY.value);
 
     const panGesture = Gesture.Pan()
@@ -39,7 +42,9 @@ export const SwipeDownPanel = ({ children }: SwipeDownPanelProps) => {
 
     return (
         <GestureDetector gesture={panGesture}>
-            <Animated.View style={[styles.panel, animatedStyle]}>{children}</Animated.View>
+            <Animated.View style={[styles.panel, topOffset ? { top: topOffset } : null, animatedStyle]}>
+                {children}
+            </Animated.View>
         </GestureDetector>
     );
 };

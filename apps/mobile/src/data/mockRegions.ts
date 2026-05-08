@@ -13,22 +13,22 @@ export const mockRegions: Region[] = [
         rarity: "rare",
         unlockXp: 120,
         polygon: [
-            { latitude: 31.0035, longitude: 28.975 },
-            { latitude: 31.009, longitude: 28.985 },
-            { latitude: 31.0015, longitude: 29.001 },
-            { latitude: 30.9955, longitude: 28.992 }
+            { latitude: 30.839, longitude: 28.965 },
+            { latitude: 30.8485, longitude: 28.9715 },
+            { latitude: 30.846, longitude: 28.9815 },
+            { latitude: 30.837, longitude: 28.975 }
         ]
     },
     {
         id: "old-town",
-        name: "Old Town",
+        name: "Downtown Core",
         rarity: "common",
         unlockXp: 80,
         polygon: [
-            { latitude: 30.998, longitude: 28.955 },
-            { latitude: 31.005, longitude: 28.962 },
-            { latitude: 30.998, longitude: 28.974 },
-            { latitude: 30.991, longitude: 28.967 }
+            { latitude: 30.8285, longitude: 28.945 },
+            { latitude: 30.835, longitude: 28.9495 },
+            { latitude: 30.8335, longitude: 28.956 },
+            { latitude: 30.827, longitude: 28.951 }
         ]
     }
 ];

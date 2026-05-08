@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 import sys
+import os
 import json
 import random
+import importlib.util
+from pathlib import Path
 from datetime import datetime
 from typing import List, Dict, Set, Optional
 import asyncio
@@ -14,11 +17,13 @@ from openai import OpenAI
 
 # NOTE: API keys must not be committed to public repos.
 # Provide via environment variable (e.g., OPENROUTER_API_KEY) at runtime.
-OPENROUTER_API_KEY = None
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 OPENROUTER_BASE = "https://openrouter.ai/api/v1"
 HEADERS = {"HTTP-Referer": "http://localhost:8000", "X-Title": "Terminal AI Agent"}
 MAX_HISTORY = 10
 MAX_RETRIES = 2
+
+DEFAULT_SYSTEM_PROMPT = "Be concise. Reply briefly."
 
 # Performance optimizations
 OPENROUTER_BASE_OPTIMIZED = "https://openrouter.ai/api/v1"  # Closest to their edge
@@ -37,13 +42,51 @@ FALLBACK_MODELS = [
     "mistralai/mistral-7b-instruct:free"
 ]
 
+_KB_HELPER = None
+
+
+def _load_kb_helper():
+    global _KB_HELPER
+    if _KB_HELPER is not None:
+        return _KB_HELPER
+
+    kb_path = Path(__file__).with_name("knowledge‑base helper.py")
+    if not kb_path.is_file():
+        _KB_HELPER = None
+        return None
+
+    spec = importlib.util.spec_from_file_location("rota_kb_helper", kb_path)
+    if not spec or not spec.loader:
+        _KB_HELPER = None
+        return None
+
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    _KB_HELPER = module
+    return _KB_HELPER
+
 
 class TerminalAIAgent:
-    def __init__(self, model: Optional[str] = None, use_fallback: bool = True, optimize_speed: bool = True):
+    def __init__(
+        self,
+        model: Optional[str] = None,
+        use_fallback: bool = True,
+        optimize_speed: bool = True,
+        stream_output: bool = True,
+        system_prompt: Optional[str] = None,
+        api_key: Optional[str] = None
+    ):
+        self.api_key = api_key or OPENROUTER_API_KEY
+        if not self.api_key:
+            raise ValueError("OPENROUTER_API_KEY is not set")
+
+        self.stream_output = stream_output
+        self.system_prompt = system_prompt or DEFAULT_SYSTEM_PROMPT
+
         # Optimize OpenAI client for speed
         self.client = OpenAI(
             base_url=OPENROUTER_BASE_OPTIMIZED,
-            api_key=OPENROUTER_API_KEY,
+            api_key=self.api_key,
             timeout=TIMEOUT,
             max_retries=1  # Reduce retries for faster fail
         )
@@ -66,6 +109,8 @@ class TerminalAIAgent:
         self.response_cache = {}
         self.cache_lock = threading.Lock()
 
+        self.kb_helper = _load_kb_helper()
+
         # Fetch available free models
         self.free_models = self._fetch_models()
         if not self.free_models:
@@ -87,7 +132,7 @@ class TerminalAIAgent:
         try:
             resp = self.session.get(
                 f"{OPENROUTER_BASE}/models",
-                headers={"Authorization": f"Bearer {OPENROUTER_API_KEY}"},
+                headers={"Authorization": f"Bearer {self.api_key}"},
                 timeout=10
             )
             if resp.status_code != 200:
@@ -143,10 +188,10 @@ class TerminalAIAgent:
                 return model
         return None
 
-    def _get_cache_key(self, message: str) -> str:
+    def _get_cache_key(self, message: str, system_prompt: str) -> str:
         """Generate cache key from message and context"""
         context = str(self.history[-3:]) if self.history else ""
-        return f"{context}:{message}"
+        return f"{system_prompt}:{context}:{message}"
 
     def _switch_model(self) -> bool:
         """Switch to another working model"""
@@ -166,13 +211,26 @@ class TerminalAIAgent:
             return True
         return False
 
-    def chat(self, message: str) -> str:
+    def chat(self, message: str, system_prompt: Optional[str] = None, stream_output: Optional[bool] = None) -> str:
         """Optimized chat with caching and streaming"""
+        effective_prompt = system_prompt or self.system_prompt
+        use_stream = self.stream_output if stream_output is None else stream_output
+
+        kb_answer = self.answer_from_kb(message)
+        if kb_answer:
+            if use_stream:
+                print(kb_answer, end="", flush=True)
+            self.history.append({"role": "user", "content": message})
+            self.history.append({"role": "assistant", "content": kb_answer})
+            return kb_answer
+
         # Check cache first
-        cache_key = self._get_cache_key(message)
+        cache_key = self._get_cache_key(message, effective_prompt)
         with self.cache_lock:
             if cache_key in self.response_cache:
                 cached_response = self.response_cache[cache_key]
+                if use_stream:
+                    print(cached_response, end="", flush=True)
                 self.history.append({"role": "user", "content": message})
                 self.history.append({"role": "assistant", "content": cached_response})
                 return f"{cached_response} 💨"
@@ -180,7 +238,7 @@ class TerminalAIAgent:
         self.history.append({"role": "user", "content": message})
 
         # Optimize system prompt for speed
-        messages = [{"role": "system", "content": "Be concise. Reply briefly."}] + self.history[-MAX_HISTORY:]
+        messages = [{"role": "system", "content": effective_prompt}] + self.history[-MAX_HISTORY:]
 
         for attempt in range(MAX_RETRIES + 1):
             try:
@@ -191,22 +249,23 @@ class TerminalAIAgent:
                     temperature=0.5 if self.optimize_speed else 0.7,  # Lower temperature = faster
                     max_tokens=MAX_TOKENS_OPTIMIZED if self.optimize_speed else 1000,
                     extra_headers=HEADERS,
-                    stream=True  # Stream for perceived speed
+                    stream=use_stream
                 )
 
-                # Process stream
                 reply = ""
-                for chunk in completion:
-                    if chunk.choices[0].delta.content:
-                        content = chunk.choices[0].delta.content
-                        reply += content
-                        # Show response as it comes
-                        print(content, end='', flush=True)
+                if use_stream:
+                    for chunk in completion:
+                        if chunk.choices[0].delta.content:
+                            content = chunk.choices[0].delta.content
+                            reply += content
+                            print(content, end='', flush=True)
+                    if reply:
+                        print()
+                else:
+                    reply = (completion.choices[0].message.content or "").strip()
 
                 if not reply:
                     reply = "I couldn't generate a response."
-                else:
-                    print()  # New line after streaming
 
                 self.history.append({"role": "assistant", "content": reply})
 
@@ -223,7 +282,18 @@ class TerminalAIAgent:
                     self.history.pop()
                     return "⚠️ All models busy. Wait a moment." if "429" in str(e) else f"❌ {str(e)[:150]}"
                 self.history.pop()
-                messages = [{"role": "system", "content": "Be concise. Reply briefly."}] + self.history[-MAX_HISTORY:]
+                messages = [{"role": "system", "content": effective_prompt}] + self.history[-MAX_HISTORY:]
+
+    def answer_from_kb(self, message: str) -> Optional[str]:
+        if not self.kb_helper:
+            return None
+        try:
+            answer, source = self.kb_helper.answer_from_kb(message)
+            if source == "kb" and answer:
+                return answer
+        except Exception:
+            return None
+        return None
 
     def run(self):
         """Main interaction loop"""

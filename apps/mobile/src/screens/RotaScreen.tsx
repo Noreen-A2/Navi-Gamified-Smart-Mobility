@@ -4,18 +4,24 @@ import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRotaStore } from "../store/useRotaStore";
 import { SectionTitle } from "../components/SectionTitle";
-import { HoloButton } from "../components/HoloButton";
 import { GlassCard } from "../components/GlassCard";
+import { RotaComposer } from "../components/RotaComposer";
 import { colors, gradients, radii, spacing, typography } from "../theme";
 
 export const RotaScreen = () => {
     const insets = useSafeAreaInsets();
     const messages = useRotaStore((state) => state.messages);
+    const sendMessage = useRotaStore((state) => state.sendMessage);
+    const isSending = useRotaStore((state) => state.isSending);
     const intents = ["Scenic", "Fast", "Quiet", "Quest", "Night"];
-    const savedRoutes = ["Marina Loop", "Old Town Drift", "Skyline Pulse"];
+    const savedRoutes = ["Marina Loop", "Downtown Drift", "Skyline Pulse"];
 
     return (
-        <ScrollView style={styles.container} contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 148 }]}>
+        <ScrollView
+            style={styles.container}
+            contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 148 }]}
+            keyboardShouldPersistTaps="handled"
+        >
             <LinearGradient colors={gradients.pearl as any} style={styles.background} />
             <SectionTitle title="Rota Studio" subtitle="Design routes with cinematic flow." />
             <GlassCard style={styles.orbCard}>
@@ -63,7 +69,7 @@ export const RotaScreen = () => {
                     </View>
                 ))}
             </GlassCard>
-            <HoloButton title="Preview cinematic route" onPress={() => undefined} />
+            <RotaComposer onSend={sendMessage} isSending={isSending} />
         </ScrollView>
     );
 };
